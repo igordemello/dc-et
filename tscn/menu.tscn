@@ -1,0 +1,87 @@
+[gd_scene format=3 uid="uid://cpqnlceh78qyg"]
+
+[ext_resource type="Script" uid="uid://f6kx2ffya4i6" path="res://scripts/menu.gd" id="1_qud60"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_q6jrf"]
+font_size = 183
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q6jrf"]
+bg_color = Color(0, 0, 0, 0.23529412)
+
+[node name="menu" type="Control" unique_id=1125241022]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qud60")
+
+[node name="Label" type="Label" parent="." unique_id=921669334]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -257.5
+offset_top = 54.0
+offset_right = 257.5
+offset_bottom = 304.0
+grow_horizontal = 2
+text = "DC-ET"
+label_settings = SubResource("LabelSettings_q6jrf")
+horizontal_alignment = 1
+
+[node name="jogar" type="Button" parent="." unique_id=115600518]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -248.25
+offset_top = -57.75
+offset_right = 248.25
+offset_bottom = 57.75
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 60
+theme_override_styles/normal = SubResource("StyleBoxFlat_q6jrf")
+text = "Jogar"
+
+[node name="config" type="Button" parent="." unique_id=346178976]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -248.25
+offset_top = 94.0
+offset_right = 248.25
+offset_bottom = 209.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 60
+theme_override_styles/normal = SubResource("StyleBoxFlat_q6jrf")
+text = "Configurações"
+
+[node name="sair" type="Button" parent="." unique_id=468654551]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -248.25
+offset_top = 242.0
+offset_right = 248.25
+offset_bottom = 357.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 60
+theme_override_styles/normal = SubResource("StyleBoxFlat_q6jrf")
+text = "Sair"
+
+[connection signal="pressed" from="jogar" to="." method="_on_jogar_pressed"]
+[connection signal="pressed" from="config" to="." method="_on_config_pressed"]
+[connection signal="pressed" from="sair" to="." method="_on_sair_pressed"]
