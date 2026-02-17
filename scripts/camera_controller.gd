@@ -17,9 +17,15 @@ func _input(event: InputEvent) -> void:
 		mouse_input.x += -event.screen_relative.x * mouse_sensitivity
 		mouse_input.y += -event.screen_relative.y * mouse_sensitivity 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	input_rotation.x = clampf(input_rotation.x + mouse_input.y, deg_to_rad(-90), deg_to_rad(85))
 	input_rotation.y += mouse_input.x
+	
+	#tentativa de limitar a rotação sentado
+	#if player_controller.current_state == player_controller.PlayerState.SITTING:
+		#input_rotation.y = clampf(input_rotation.y + mouse_input.x, deg_to_rad(-90), deg_to_rad(85))
+	#else:
+		#input_rotation.y += mouse_input.x
 	
 	player_controller.camera_controller_anchor.transform.basis = Basis.from_euler(Vector3(input_rotation.x, 0.0, 0.0))
 	
