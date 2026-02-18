@@ -8,9 +8,10 @@
 [ext_resource type="Script" uid="uid://xmkhgcsomjq1" path="res://scripts/computer.gd" id="5_oahfx"]
 [ext_resource type="Script" uid="uid://d86i2miclmxh" path="res://scripts/chair.gd" id="6_6lbue"]
 [ext_resource type="PackedScene" uid="uid://cq2nrxnj5xy03" path="res://assets/placeholder models/computer/retro_crt_computer_1990s_desktop_pc.glb" id="6_qvbp8"]
-[ext_resource type="Script" uid="uid://by2jxjhv1acym" path="res://scripts/pc_cam.gd" id="7_4caso"]
+[ext_resource type="Script" uid="uid://by2jxjhv1acym" path="res://scripts/focusCam.gd" id="7_4caso"]
 [ext_resource type="Script" uid="uid://consaod6gq51a" path="res://scripts/pc_screen.gd" id="9_bc6ss"]
 [ext_resource type="Texture2D" uid="uid://beouj1skfaufg" path="res://assets/icon.svg" id="9_tmi1c"]
+[ext_resource type="PackedScene" uid="uid://t0eup2h04il2" path="res://tscn/teste.tscn" id="11_djwg0"]
 [ext_resource type="Shader" uid="uid://12i3x3gglucb" path="res://shaders/crtPcScreen.gdshader" id="12_8dajo"]
 [ext_resource type="Script" uid="uid://418dtjjlfxwa" path="res://scripts/teste.gd" id="13_2vurp"]
 
@@ -61,19 +62,19 @@ size = Vector2(0.4, 0.3)
 shader = ExtResource("12_8dajo")
 shader_parameter/overlay = false
 shader_parameter/scanlines_opacity = 0.0
-shader_parameter/scanlines_width = 0.10800000512999999
+shader_parameter/scanlines_width = 0.10800000513
 shader_parameter/grille_opacity = 0.2650000125875
 shader_parameter/resolution = Vector2(640, 480)
 shader_parameter/pixelate = false
 shader_parameter/roll = true
-shader_parameter/roll_speed = 3.9699999999999998
+shader_parameter/roll_speed = 3.97
 shader_parameter/roll_size = 9.9750004738125
 shader_parameter/roll_variation = 1.48000006704012
 shader_parameter/distort_intensity = 0.02400000114
 shader_parameter/noise_opacity = 0.254000012065
 shader_parameter/noise_speed = 5.0
 shader_parameter/static_noise_intensity = 0.226000010735
-shader_parameter/aberration = 0.015000048212499895
+shader_parameter/aberration = 0.01500004821249989
 shader_parameter/brightness = 1.45
 shader_parameter/discolor = true
 shader_parameter/warp_amount = 0.0
@@ -267,6 +268,8 @@ size = Vector3(51.47519, 36.726425, 32.330513)
 
 [node name="escritorio" type="Node3D" unique_id=824535615]
 script = ExtResource("1_corll")
+metadata/_edit_vertical_guides_ = [512.0]
+metadata/_edit_horizontal_guides_ = [513.0]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=861624578]
 environment = SubResource("Environment_r41qb")
@@ -346,6 +349,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4, 0)
 top_level = true
 script = ExtResource("3_lbwrt")
 player_controller = NodePath("..")
+mouse_sensitivity = 0.01
 
 [node name="Camera3D" type="Camera3D" parent="CharacterBody3D/CameraController" unique_id=1866849650]
 
@@ -402,7 +406,7 @@ transform = Transform3D(0.99999964, 0, 0, 0, 0.99999964, 0, 0, 0, 0.99999964, -0
 shape = SubResource("BoxShape3D_6lbue")
 
 [node name="FocusCamera" type="Camera3D" parent="table/computer" unique_id=1775828551]
-transform = Transform3D(-0.19082229, 0, 1.0822066, 0, 1.0989014, 0, -1.0822066, 0, -0.19082229, 0.50345206, 0.3506651, -0.084306836)
+transform = Transform3D(-0.19082229, 0, 1.0822066, 0, 1.0989014, 0, -1.0822066, 0, -0.19082229, 0.48395848, 0.35940278, -0.1042124)
 script = ExtResource("7_4caso")
 
 [node name="PcScreen" type="Node3D" parent="table/computer" unique_id=1319901058]
@@ -415,6 +419,7 @@ visible = false
 mesh = SubResource("QuadMesh_oahfx")
 
 [node name="SubViewport" type="SubViewport" parent="table/computer/PcScreen" unique_id=473628276]
+size = Vector2i(1024, 768)
 
 [node name="Control" type="Control" parent="table/computer/PcScreen/SubViewport" unique_id=393644706]
 layout_mode = 3
@@ -452,7 +457,19 @@ layout_mode = 2
 texture = ExtResource("9_tmi1c")
 metadata/_tab_index = 2
 
-[node name="ColorRect" type="ColorRect" parent="table/computer/PcScreen/SubViewport/Control" unique_id=920918529]
+[node name="LineEdit" type="LineEdit" parent="table/computer/PcScreen/SubViewport/Control/TabContainer" unique_id=660154648]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 42
+placeholder_text = "asdasdasd"
+metadata/_tab_index = 3
+
+[node name="Control" parent="table/computer/PcScreen/SubViewport/Control" unique_id=399285604 instance=ExtResource("11_djwg0")]
+layout_mode = 1
+offset_right = 478.20795
+offset_bottom = 221.95197
+
+[node name="texture" type="ColorRect" parent="table/computer/PcScreen/SubViewport/Control" unique_id=920918529]
 z_index = 1
 material = SubResource("ShaderMaterial_2vurp")
 layout_mode = 1
@@ -497,23 +514,25 @@ collision_layer = 5
 script = ExtResource("13_2vurp")
 
 [node name="carimbo" type="Node3D" parent="teste" unique_id=1701095008]
-transform = Transform3D(1, 0, 0, 0, 1.0000001, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1.0000004, 0, 0, 0, 1, 0, -12.632584, 0)
 
 [node name="Sphere" type="MeshInstance3D" parent="teste/carimbo" unique_id=782549613]
-transform = Transform3D(5.3209653, 0, 0, 0, 5.3209653, 0, 0, 0, 5.3209653, 0.047904022, 0, 0.024224596)
+transform = Transform3D(5.320965, 0, -2.3841858e-07, 0, 5.3209643, 0, 2.3841858e-07, 0, 5.320965, 0.04788208, 12.632576, 0.024230957)
 mesh = SubResource("ArrayMesh_a1ppn")
 
 [node name="Cube" type="MeshInstance3D" parent="teste/carimbo" unique_id=1703579347]
-transform = Transform3D(1.2520833, 0, 0, 0, 4.308675, 0, 0, 0, 1, 0, -11.4009285, 0)
+transform = Transform3D(1.2520833, 0, -2.9802322e-08, 0, 4.3086743, 0, 1.7881393e-07, 0, 1, 0, 1.2316513, 0)
 mesh = SubResource("ArrayMesh_f8it4")
 
 [node name="Cube_001" type="MeshInstance3D" parent="teste/carimbo" unique_id=620912868]
-transform = Transform3D(8.760268, 0, 0, 0, 1, 0, 0, 0, 4.419523, 0, -20.734493, 0)
+transform = Transform3D(8.760267, 0, 0, 0, 0.9999999, 0, 4.7683716e-07, 0, 4.419523, 0, -8.101913, 0)
 mesh = SubResource("ArrayMesh_xso8y")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="teste" unique_id=1832015346]
 transform = Transform3D(1, 0, 0, 0, 1.0000004, 0, 0, 0, 1, 4.2225647, -2.338913, 6.0692444)
 shape = SubResource("BoxShape3D_8dajo")
 
-[node name="FocusCamera" type="Camera3D" parent="teste" unique_id=346986415]
-transform = Transform3D(85.64266, -114.339386, -4.9979335e-06, 0, -6.244484e-06, 142.85715, -114.339386, -85.64266, -3.7435598e-06, 2.690918, 63.950775, 1.3433228)
+[node name="FocusCamera" type="Camera3D" parent="teste" unique_id=346986415 node_paths=PackedStringArray("target_object")]
+transform = Transform3D(85.64267, -114.339386, -4.9979335e-06, 0, -6.2444847e-06, 142.85715, -114.339386, -85.64267, -3.74356e-06, 2.6909332, 56.289505, 1.3433533)
+script = ExtResource("7_4caso")
+target_object = NodePath("../carimbo")

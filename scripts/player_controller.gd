@@ -166,18 +166,18 @@ func smooth_focus_transition(target_camera: Camera3D):
 	main_camera.current = false
 	target_camera.current = true
 	
-	var tween2 = create_tween()
-	tween2.set_trans(Tween.TRANS_SINE)
-	tween2.set_ease(Tween.EASE_IN_OUT)
-	
-	tween2.tween_property(
-		target_camera,
-		"fov",
-		90,
-		0.6
-	)
-	
-	await tween2.finished
+	#var tween2 = create_tween()
+	#tween2.set_trans(Tween.TRANS_SINE)
+	#tween2.set_ease(Tween.EASE_IN_OUT)
+	#
+	#tween2.tween_property(
+		#target_camera,
+		#"fov",
+		#90,
+		#0.6
+	#)
+	#
+	#await tween2.finished
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
@@ -187,18 +187,18 @@ func smooth_exit_focus():
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
-	var tween2 = create_tween()
-	tween2.set_trans(Tween.TRANS_SINE)
-	tween2.set_ease(Tween.EASE_IN_OUT)
-	
-	tween2.tween_property(
-		active_focus_camera,
-		"fov",
-		75,
-		0.6
-	)
-	
-	await tween2.finished
+	#var tween2 = create_tween()
+	#tween2.set_trans(Tween.TRANS_SINE)
+	#tween2.set_ease(Tween.EASE_IN_OUT)
+	#
+	#tween2.tween_property(
+		#active_focus_camera,
+		#"fov",
+		#75,
+		#0.6
+	#)
+	#
+	#await tween2.finished
 	
 	active_focus_camera.current = false
 	main_camera.current = true
