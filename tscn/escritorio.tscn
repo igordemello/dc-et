@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://dwtpwqxmclug2" path="res://scripts/camera_controller.gd" id="3_lbwrt"]
 [ext_resource type="PackedScene" uid="uid://damhehj38ye01" path="res://assets/placeholder models/table/table.glb" id="4_bjdq7"]
 [ext_resource type="PackedScene" uid="uid://6h8mrgx1osui" path="res://assets/placeholder models/chair/gaming_chair.glb" id="4_ske3q"]
+[ext_resource type="Script" uid="uid://xmkhgcsomjq1" path="res://scripts/computer.gd" id="5_oahfx"]
 [ext_resource type="Script" uid="uid://d86i2miclmxh" path="res://scripts/chair.gd" id="6_6lbue"]
 [ext_resource type="PackedScene" uid="uid://cq2nrxnj5xy03" path="res://assets/placeholder models/computer/retro_crt_computer_1990s_desktop_pc.glb" id="6_qvbp8"]
 
@@ -138,6 +139,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
 [node name="RayCast3D" type="RayCast3D" parent="CharacterBody3D/CameraControllerAnchor" unique_id=78420337]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+target_position = Vector3(0, -1.5, 0)
 collision_mask = 4
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1972718783]
@@ -175,6 +177,7 @@ shape = SubResource("BoxShape3D_qvbp8")
 [node name="computer" type="StaticBody3D" parent="table" unique_id=1628550562]
 transform = Transform3D(0.99999964, 0, 0, 0, 0.99999964, 0, 0, 0, 0.99999964, 0.05642557, 0.9529113, 0.6786851)
 collision_layer = 5
+script = ExtResource("5_oahfx")
 
 [node name="Sketchfab_Scene3" parent="table/computer" unique_id=1147632273 instance=ExtResource("6_qvbp8")]
 transform = Transform3D(1.0822065, 0, 0.19082214, 0, 1.0989013, 0, -0.19082214, 0, 1.0822065, -1.5267277, -0.06250954, 1.9584311)
@@ -182,6 +185,9 @@ transform = Transform3D(1.0822065, 0, 0.19082214, 0, 1.0989013, 0, -0.19082214, 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="table/computer" unique_id=1220381453]
 transform = Transform3D(0.99999964, 0, 0, 0, 0.99999964, 0, 0, 0, 0.99999964, 0.07519579, 0.24792457, -0.0421142)
 shape = SubResource("BoxShape3D_6lbue")
+
+[node name="FocusCamera" type="Camera3D" parent="table/computer" unique_id=1775828551]
+transform = Transform3D(-0.19138744, -0.17633732, 1.0676425, -0.031114569, 1.084661, 0.17357054, -1.0816594, -1.247657e-08, -0.19390014, 0.51733494, 0.42206967, -0.071686566)
 
 [node name="chair" type="StaticBody3D" parent="." unique_id=1643164589]
 transform = Transform3D(0.91, 0, 0, 0, 0.91, 0, 0, 0, 0.91, -1.4806328, 0, 0.23941785)

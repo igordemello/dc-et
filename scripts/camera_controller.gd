@@ -13,11 +13,16 @@ func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _input(event: InputEvent) -> void:
+	if player_controller.current_state == player_controller.PlayerState.FOCUSING:
+		return
 	if event is InputEventMouseMotion:
 		mouse_input.x += -event.screen_relative.x * mouse_sensitivity
 		mouse_input.y += -event.screen_relative.y * mouse_sensitivity 
 
 func _process(_delta: float) -> void:
+	if player_controller.current_state == player_controller.PlayerState.FOCUSING:
+		return
+	
 	input_rotation.x = clampf(input_rotation.x + mouse_input.y, deg_to_rad(-90), deg_to_rad(85))
 	input_rotation.y += mouse_input.x
 	
