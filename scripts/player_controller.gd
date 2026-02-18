@@ -98,8 +98,21 @@ func sit(chair):
 	current_state = PlayerState.SITTING
 	current_chair = chair
 	
-	global_transform.origin = chair.seat_position.global_transform.origin
 	velocity = Vector3.ZERO
+	
+	var tween = create_tween()
+	tween.set_trans(Tween.TRANS_SINE)
+	tween.set_ease(Tween.EASE_IN_OUT)
+	
+	tween.tween_property(
+		self,
+		"global_transform:origin",
+		chair.seat_position.global_transform.origin,
+		0.6
+	)
+	
+	await tween.finished
+
 
 func stand_up():
 	if current_chair == null:
@@ -107,12 +120,26 @@ func stand_up():
 	
 	velocity = Vector3.ZERO
 	set_physics_process(false)
-	global_transform = current_chair.exit_position.global_transform
+	
+	var tween = create_tween()
+	tween.set_trans(Tween.TRANS_SINE)
+	tween.set_ease(Tween.EASE_IN_OUT)
+	
+	tween.tween_property(
+		self,
+		"global_transform:origin",
+		current_chair.exit_position.global_transform.origin,
+		0.6
+	)
+	
+	await tween.finished
+	
 	await get_tree().process_frame
 	set_physics_process(true)
 	
 	current_state = PlayerState.FREE
 	current_chair = null
+
 
 func smooth_focus_transition(target_camera: Camera3D):
 	crosshairVisible = false

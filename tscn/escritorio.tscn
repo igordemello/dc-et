@@ -8,6 +8,9 @@
 [ext_resource type="Script" uid="uid://xmkhgcsomjq1" path="res://scripts/computer.gd" id="5_oahfx"]
 [ext_resource type="Script" uid="uid://d86i2miclmxh" path="res://scripts/chair.gd" id="6_6lbue"]
 [ext_resource type="PackedScene" uid="uid://cq2nrxnj5xy03" path="res://assets/placeholder models/computer/retro_crt_computer_1990s_desktop_pc.glb" id="6_qvbp8"]
+[ext_resource type="Script" uid="uid://by2jxjhv1acym" path="res://scripts/pc_cam.gd" id="7_4caso"]
+[ext_resource type="Script" uid="uid://consaod6gq51a" path="res://scripts/pc_screen.gd" id="9_bc6ss"]
+[ext_resource type="Texture2D" uid="uid://beouj1skfaufg" path="res://assets/icon.svg" id="9_tmi1c"]
 
 [sub_resource type="Environment" id="Environment_r41qb"]
 background_mode = 1
@@ -45,10 +48,25 @@ font_color = Color(1, 1, 0, 1)
 size = Vector3(1.3161621, 0.8896942, 2.2041016)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6lbue"]
-size = Vector3(0.59277344, 0.6062012, 0.4777832)
+size = Vector3(0.3717041, 0.6062012, 0.4777832)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_oahfx"]
-size = Vector3(0.4399414, 1.2059326, 0.52160645)
+size = Vector3(0.6008301, 1.2059326, 0.52160645)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_tmi1c"]
+viewport_path = NodePath("PcScreen/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bc6ss"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_tmi1c")
+
+[sub_resource type="QuadMesh" id="QuadMesh_oahfx"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_bc6ss")
+size = Vector2(0.4, 0.3)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_bc6ss"]
+data = PackedVector3Array(0.19999999, -0.14999999, 0, -0.19999999, -0.14999999, 0, 0.19999999, 0.14999999, 0, -0.19999999, -0.14999999, 0, -0.19999999, 0.14999999, 0, 0.19999999, 0.14999999, 0)
 
 [node name="escritorio" type="Node3D" unique_id=824535615]
 script = ExtResource("1_corll")
@@ -176,18 +194,19 @@ shape = SubResource("BoxShape3D_qvbp8")
 
 [node name="computer" type="StaticBody3D" parent="table" unique_id=1628550562]
 transform = Transform3D(0.99999964, 0, 0, 0, 0.99999964, 0, 0, 0, 0.99999964, 0.05642557, 0.9529113, 0.6786851)
-collision_layer = 5
+collision_layer = 4
 script = ExtResource("5_oahfx")
 
 [node name="Sketchfab_Scene3" parent="table/computer" unique_id=1147632273 instance=ExtResource("6_qvbp8")]
 transform = Transform3D(1.0822065, 0, 0.19082214, 0, 1.0989013, 0, -0.19082214, 0, 1.0822065, -1.5267277, -0.06250954, 1.9584311)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="table/computer" unique_id=1220381453]
-transform = Transform3D(0.99999964, 0, 0, 0, 0.99999964, 0, 0, 0, 0.99999964, 0.07519579, 0.24792457, -0.0421142)
+transform = Transform3D(0.99999964, 0, 0, 0, 0.99999964, 0, 0, 0, 0.99999964, -0.03533888, 0.24792457, -0.0421142)
 shape = SubResource("BoxShape3D_6lbue")
 
 [node name="FocusCamera" type="Camera3D" parent="table/computer" unique_id=1775828551]
-transform = Transform3D(-0.19138744, -0.17633732, 1.0676425, -0.031114569, 1.084661, 0.17357054, -1.0816594, -1.247657e-08, -0.19390014, 0.51733494, 0.42206967, -0.071686566)
+transform = Transform3D(-0.19138744, -0.17633732, 1.0676425, -0.031114569, 1.084661, 0.17357054, -1.0816594, -1.2476935e-08, -0.19390014, 0.64467, 0.42206967, -0.071686566)
+script = ExtResource("7_4caso")
 
 [node name="chair" type="StaticBody3D" parent="." unique_id=1643164589]
 transform = Transform3D(0.91, 0, 0, 0, 0.91, 0, 0, 0, 0.91, -1.4806328, 0, 0.23941785)
@@ -201,8 +220,61 @@ transform = Transform3D(-4.371138e-08, 0, -0.99999976, 0, 0.99999976, 0, 0.99999
 transform = Transform3D(0.99999964, 0, 0, 0, 0.99999964, 0, 0, 0, 0.99999964, 0.2450335, 1.0305028, -0.21492617)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="chair" unique_id=1412441781]
-transform = Transform3D(0.99999964, 0, 0, 0, 0.99999964, 0, 0, 0, 0.99999964, 0.17382777, 0.503845, -0.23919639)
+transform = Transform3D(0.99999964, 0, 0, 0, 0.99999964, 0, 0, 0, 0.99999964, 0.15246546, 0.503845, -0.23919633)
 shape = SubResource("BoxShape3D_oahfx")
 
 [node name="ExitPosition" type="Marker3D" parent="chair" unique_id=603775304]
 transform = Transform3D(0.9999997, 0, 0, 0, 0.9999997, 0, 0, 0, 0.9999997, 0.45863998, 0.9233438, 1.0923958)
+
+[node name="PcScreen" type="Node3D" parent="." unique_id=1319901058]
+transform = Transform3D(0.9848077, 0, 0.17364818, 0, 1, 0, -0.17364818, 0, 0.9848077, -2.2175336, 1.1859183, 0.5748009)
+script = ExtResource("9_bc6ss")
+
+[node name="Quad" type="MeshInstance3D" parent="PcScreen" unique_id=570947174]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.004731059, 0, 0)
+mesh = SubResource("QuadMesh_oahfx")
+
+[node name="Area3D" type="Area3D" parent="PcScreen/Quad" unique_id=1121485999]
+transform = Transform3D(-4.4703484e-08, 0, -1, 0, 1, 0, 1, 0, -4.4703484e-08, -0.074462235, 0, -0.011474133)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PcScreen/Quad/Area3D" unique_id=1727318518]
+transform = Transform3D(-4.4703484e-08, 0, 1, 0, 1, 0, -1, 0, -4.4703484e-08, 0.011474133, 0, -0.074462235)
+shape = SubResource("ConcavePolygonShape3D_bc6ss")
+
+[node name="SubViewport" type="SubViewport" parent="PcScreen" unique_id=473628276]
+
+[node name="Control" type="Control" parent="PcScreen/SubViewport" unique_id=393644706]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TabContainer" type="TabContainer" parent="PcScreen/SubViewport/Control" unique_id=291281205]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+current_tab = 0
+
+[node name="TextureRect" type="TextureRect" parent="PcScreen/SubViewport/Control/TabContainer" unique_id=1443355873]
+layout_mode = 2
+texture = ExtResource("9_tmi1c")
+metadata/_tab_index = 0
+
+[node name="TextureRect2" type="TextureRect" parent="PcScreen/SubViewport/Control/TabContainer" unique_id=1146003006]
+visible = false
+modulate = Color(0, 1, 0.2509804, 1)
+layout_mode = 2
+texture = ExtResource("9_tmi1c")
+metadata/_tab_index = 1
+
+[node name="TextureRect3" type="TextureRect" parent="PcScreen/SubViewport/Control/TabContainer" unique_id=950709070]
+visible = false
+modulate = Color(1, 0, 0, 1)
+layout_mode = 2
+texture = ExtResource("9_tmi1c")
+metadata/_tab_index = 2
