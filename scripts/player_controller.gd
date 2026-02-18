@@ -1,7 +1,6 @@
 class_name PlayerController
 extends CharacterBody3D
 
-
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
@@ -29,6 +28,11 @@ var focus_original_transform: Transform3D
 
 @onready var main_camera: Camera3D = $CameraController/Camera3D
 var active_focus_camera: Camera3D = null
+
+var backupTransformMainCam
+
+@onready var crosshair: ColorRect = $"../CanvasLayer/crosshair"
+var crosshairVisible = true
 
 func _physics_process(delta: float) -> void:
 	if current_state == PlayerState.SITTING or current_state == PlayerState.FOCUSING:
@@ -58,6 +62,8 @@ func _process(delta: float) -> void:
 		cdFocusExit -= delta
 	
 	check_interaction()
+	
+	crosshair.visible = crosshairVisible
 
 func check_interaction():
 	if not raycast.is_colliding():
@@ -74,8 +80,16 @@ func check_interaction():
 			
 	if collider.has_method("can_focus") and current_state == PlayerState.SITTING and cdFocusExit <= 0:
 		if Input.is_action_just_pressed("mouse_right"):
-			activate_focus_camera(collider.focus_camera)
+			smooth_focus_transition(collider.focus_camera)
 
+func _input(_event):
+	if current_state == PlayerState.SITTING and Input.is_action_just_pressed("interact"):
+		stand_up()
+		cdSittingExit = timeSittingExit
+		
+	if current_state == PlayerState.FOCUSING and Input.is_action_just_pressed("mouse_right"):
+		smooth_exit_focus()
+		cdFocusExit = timeFocusExit
 
 func sit(chair):
 	if current_state != PlayerState.FREE or cdSittingExit > 0:
@@ -86,16 +100,6 @@ func sit(chair):
 	
 	global_transform.origin = chair.seat_position.global_transform.origin
 	velocity = Vector3.ZERO
-
-func _input(_event):
-	if current_state == PlayerState.SITTING and Input.is_action_just_pressed("interact"):
-		stand_up()
-		cdSittingExit = timeSittingExit
-		
-	if current_state == PlayerState.FOCUSING and Input.is_action_just_pressed("mouse_right"):
-		exit_focus()
-		cdFocusExit = timeFocusExit
-
 
 func stand_up():
 	if current_chair == null:
@@ -110,30 +114,55 @@ func stand_up():
 	current_state = PlayerState.FREE
 	current_chair = null
 
-
-func activate_focus_camera(focus_cam: Camera3D):
-	if current_state != PlayerState.SITTING:
-		return
+func smooth_focus_transition(target_camera: Camera3D):
+	crosshairVisible = false
 	
 	current_state = PlayerState.FOCUSING
-	active_focus_camera = focus_cam
+	active_focus_camera = target_camera
+	
+	backupTransformMainCam = main_camera.global_transform
+	
+	var tween = create_tween()
+	tween.set_trans(Tween.TRANS_SINE)
+	tween.set_ease(Tween.EASE_IN_OUT)
+	
+	tween.tween_property(
+		main_camera,
+		"global_transform",
+		target_camera.global_transform,
+		0.6
+	)
+	
+	await tween.finished
 	
 	main_camera.current = false
-	focus_cam.current = true
+	target_camera.current = true
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
-func exit_focus():
+func smooth_exit_focus():
 	if current_state != PlayerState.FOCUSING:
 		return
 	
-	if active_focus_camera:
-		active_focus_camera.current = false
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
+	active_focus_camera.current = false
 	main_camera.current = true
 	
+	var tween = create_tween()
+	tween.set_trans(Tween.TRANS_SINE)
+	tween.set_ease(Tween.EASE_IN_OUT)
+	
+	tween.tween_property(
+		main_camera,
+		"global_transform",
+		backupTransformMainCam,
+		0.6
+	)
+	
+	await tween.finished
+	
 	current_state = PlayerState.SITTING
-	focused_object = null
 	active_focus_camera = null
 	
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	crosshairVisible = true
