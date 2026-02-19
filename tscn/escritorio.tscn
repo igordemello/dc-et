@@ -472,7 +472,7 @@ layout_mode = 1
 offset_right = 478.20795
 offset_bottom = 221.95197
 
-[node name="Control2" parent="table/computer/PcScreen/SubViewport/Control" unique_id=956081013 node_paths=PackedStringArray("player") instance=ExtResource("11_1wwud")]
+[node name="minigame" parent="table/computer/PcScreen/SubViewport/Control" unique_id=956081013 node_paths=PackedStringArray("player") instance=ExtResource("11_1wwud")]
 layout_mode = 1
 offset_right = 478.20795
 offset_bottom = 221.95197

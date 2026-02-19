@@ -6,13 +6,14 @@ const JUMP_VELOCITY = -400.0
 var pulou_inimigo = false
 var pulo_duplo = false
 var pode_pulo_duplo = false
+var pontos = 0 
 var carimbos
 
 @onready var player: PlayerController = $"../..".player
 
 func _physics_process(delta: float) -> void:
-	if player.current_state != player.PlayerState.FOCUSING:
-		return
+	#if player.current_state != player.PlayerState.FOCUSING:
+		#return
 
 	if not is_on_floor():
 		if pulo_duplo == true:
@@ -27,8 +28,8 @@ func _physics_process(delta: float) -> void:
 		
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-		if pode_pulo_duplo:
-			pulo_duplo = true
+		#if pode_pulo_duplo:
+		pulo_duplo = true
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
