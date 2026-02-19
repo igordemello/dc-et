@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://by2jxjhv1acym" path="res://scripts/focusCam.gd" id="7_4caso"]
 [ext_resource type="Script" uid="uid://consaod6gq51a" path="res://scripts/pc_screen.gd" id="9_bc6ss"]
 [ext_resource type="Texture2D" uid="uid://beouj1skfaufg" path="res://assets/icon.svg" id="9_tmi1c"]
+[ext_resource type="PackedScene" uid="uid://bnfvwqgtpx41q" path="res://tscn/minigames_C1/minigame_pegarcarimbo.tscn" id="11_1wwud"]
 [ext_resource type="PackedScene" uid="uid://t0eup2h04il2" path="res://tscn/teste.tscn" id="11_djwg0"]
 [ext_resource type="Shader" uid="uid://12i3x3gglucb" path="res://shaders/crtPcScreen.gdshader" id="12_8dajo"]
 [ext_resource type="Script" uid="uid://418dtjjlfxwa" path="res://scripts/teste.gd" id="13_2vurp"]
@@ -430,6 +431,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TabContainer" type="TabContainer" parent="table/computer/PcScreen/SubViewport/Control" unique_id=291281205]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -465,9 +467,16 @@ placeholder_text = "asdasdasd"
 metadata/_tab_index = 3
 
 [node name="Control" parent="table/computer/PcScreen/SubViewport/Control" unique_id=399285604 instance=ExtResource("11_djwg0")]
+visible = false
 layout_mode = 1
 offset_right = 478.20795
 offset_bottom = 221.95197
+
+[node name="Control2" parent="table/computer/PcScreen/SubViewport/Control" unique_id=956081013 node_paths=PackedStringArray("player") instance=ExtResource("11_1wwud")]
+layout_mode = 1
+offset_right = 478.20795
+offset_bottom = 221.95197
+player = NodePath("../../../../../../CharacterBody3D")
 
 [node name="texture" type="ColorRect" parent="table/computer/PcScreen/SubViewport/Control" unique_id=920918529]
 z_index = 1
