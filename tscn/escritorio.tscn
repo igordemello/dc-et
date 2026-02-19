@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://t0eup2h04il2" path="res://tscn/teste.tscn" id="11_djwg0"]
 [ext_resource type="Shader" uid="uid://12i3x3gglucb" path="res://shaders/crtPcScreen.gdshader" id="12_8dajo"]
 [ext_resource type="Script" uid="uid://418dtjjlfxwa" path="res://scripts/teste.gd" id="13_2vurp"]
+[ext_resource type="PackedScene" uid="uid://dc7w7gpx8tc6r" path="res://tscn/desktop_pc.tscn" id="13_wk85n"]
 
 [sub_resource type="Environment" id="Environment_r41qb"]
 background_mode = 1
@@ -76,7 +77,7 @@ shader_parameter/noise_opacity = 0.254000012065
 shader_parameter/noise_speed = 5.0
 shader_parameter/static_noise_intensity = 0.226000010735
 shader_parameter/aberration = 0.01500004821249989
-shader_parameter/brightness = 1.45
+shader_parameter/brightness = 0.725
 shader_parameter/discolor = true
 shader_parameter/warp_amount = 0.0
 shader_parameter/clip_warp = false
@@ -89,6 +90,9 @@ resource_name = "Material"
 cull_mode = 2
 roughness = 0.5
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_wk85n"]
+viewport_path = NodePath("table/computer/PcScreen/SubViewport")
+
 [sub_resource type="ViewportTexture" id="ViewportTexture_8dajo"]
 viewport_path = NodePath("table/computer/PcScreen/SubViewport")
 
@@ -97,8 +101,11 @@ resource_local_to_scene = true
 resource_name = "Material.001"
 cull_mode = 2
 albedo_color = Color(0.9751341, 0.9751341, 0.9751341, 1)
-albedo_texture = SubResource("ViewportTexture_8dajo")
+albedo_texture = SubResource("ViewportTexture_wk85n")
 roughness = 0.5
+emission_enabled = true
+emission_energy_multiplier = 0.5
+emission_texture = SubResource("ViewportTexture_8dajo")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_xm7vt"]
 resource_local_to_scene = true
@@ -422,7 +429,7 @@ mesh = SubResource("QuadMesh_oahfx")
 [node name="SubViewport" type="SubViewport" parent="table/computer/PcScreen" unique_id=473628276]
 size = Vector2i(1024, 768)
 
-[node name="Control" type="Control" parent="table/computer/PcScreen/SubViewport" unique_id=393644706]
+[node name="Father" type="Control" parent="table/computer/PcScreen/SubViewport" unique_id=393644706]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -430,7 +437,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TabContainer" type="TabContainer" parent="table/computer/PcScreen/SubViewport/Control" unique_id=291281205]
+[node name="teste_tabContainer" type="TabContainer" parent="table/computer/PcScreen/SubViewport/Father" unique_id=291281205]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -440,45 +447,49 @@ grow_horizontal = 2
 grow_vertical = 2
 current_tab = 0
 
-[node name="TextureRect" type="TextureRect" parent="table/computer/PcScreen/SubViewport/Control/TabContainer" unique_id=1443355873]
+[node name="TextureRect" type="TextureRect" parent="table/computer/PcScreen/SubViewport/Father/teste_tabContainer" unique_id=1443355873]
 layout_mode = 2
 texture = ExtResource("9_tmi1c")
 metadata/_tab_index = 0
 
-[node name="TextureRect2" type="TextureRect" parent="table/computer/PcScreen/SubViewport/Control/TabContainer" unique_id=1146003006]
+[node name="TextureRect2" type="TextureRect" parent="table/computer/PcScreen/SubViewport/Father/teste_tabContainer" unique_id=1146003006]
 visible = false
 modulate = Color(0, 1, 0.2509804, 1)
 layout_mode = 2
 texture = ExtResource("9_tmi1c")
 metadata/_tab_index = 1
 
-[node name="TextureRect3" type="TextureRect" parent="table/computer/PcScreen/SubViewport/Control/TabContainer" unique_id=950709070]
+[node name="TextureRect3" type="TextureRect" parent="table/computer/PcScreen/SubViewport/Father/teste_tabContainer" unique_id=950709070]
 visible = false
 modulate = Color(1, 0, 0, 1)
 layout_mode = 2
 texture = ExtResource("9_tmi1c")
 metadata/_tab_index = 2
 
-[node name="LineEdit" type="LineEdit" parent="table/computer/PcScreen/SubViewport/Control/TabContainer" unique_id=660154648]
+[node name="LineEdit" type="LineEdit" parent="table/computer/PcScreen/SubViewport/Father/teste_tabContainer" unique_id=660154648]
 visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 42
 placeholder_text = "asdasdasd"
 metadata/_tab_index = 3
 
-[node name="Control" parent="table/computer/PcScreen/SubViewport/Control" unique_id=399285604 instance=ExtResource("11_djwg0")]
+[node name="teste_Click" parent="table/computer/PcScreen/SubViewport/Father" unique_id=399285604 instance=ExtResource("11_djwg0")]
 visible = false
 layout_mode = 1
 offset_right = 478.20795
 offset_bottom = 221.95197
 
-[node name="minigame" parent="table/computer/PcScreen/SubViewport/Control" unique_id=956081013 node_paths=PackedStringArray("player") instance=ExtResource("11_1wwud")]
+[node name="Control2" parent="table/computer/PcScreen/SubViewport/Father" unique_id=956081013 node_paths=PackedStringArray("player") instance=ExtResource("11_1wwud")]
 layout_mode = 1
 offset_right = 478.20795
 offset_bottom = 221.95197
 player = NodePath("../../../../../../CharacterBody3D")
 
-[node name="texture" type="ColorRect" parent="table/computer/PcScreen/SubViewport/Control" unique_id=920918529]
+[node name="desktop" parent="table/computer/PcScreen/SubViewport/Father" unique_id=1201410153 instance=ExtResource("13_wk85n")]
+visible = false
+layout_mode = 1
+
+[node name="texture" type="ColorRect" parent="table/computer/PcScreen/SubViewport/Father" unique_id=920918529]
 z_index = 1
 material = SubResource("ShaderMaterial_2vurp")
 layout_mode = 1

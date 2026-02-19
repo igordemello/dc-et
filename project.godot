@@ -13,13 +13,16 @@ config_version=5
 config/name="dc-et"
 run/main_scene="uid://bx1g12k8asbyl"
 config/features=PackedStringArray("4.6", "Forward Plus")
-config/icon="res://assets/icon.svg"
+config/icon="res://logo.ico"
+config/macos_native_icon="res://logo.ico"
+config/windows_native_icon="res://logo.ico"
 
 [display]
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/size/mode=3
+window/windows_native_icon=""
 
 [input]
 

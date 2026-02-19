@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dc7w7gpx8tc6r"]
+
+[ext_resource type="Texture2D" uid="uid://28pds6bbcqdk" path="res://assets/SO PC/wallpaper.png" id="1_bjmsp"]
+
+[node name="Control" type="Control" unique_id=1201410153]
+layout_mode = 3
+anchor_right = 0.53300005
+anchor_bottom = 0.711
+offset_right = 0.6398926
+offset_bottom = 0.11999512
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="wallpaper" type="TextureRect" parent="." unique_id=1224433748]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_bjmsp")

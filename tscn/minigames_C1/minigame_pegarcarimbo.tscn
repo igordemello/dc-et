@@ -2,13 +2,21 @@
 
 [ext_resource type="Script" uid="uid://4wdhucx751f" path="res://scripts/minigames/minigame_pegarcarimbo/minigame_pegarcarimbo.gd" id="1_k8tac"]
 [ext_resource type="Script" uid="uid://cv5teqlag76xq" path="res://scripts/minigames/minigame_pegarcarimbo/Personagem.gd" id="2_01q2h"]
-[ext_resource type="PackedScene" uid="uid://bxpka7lpw380f" path="res://tscn/minigames_C1/enemy.tscn" id="2_mktqg"]
+[ext_resource type="FontFile" uid="uid://bvtt8fpbg4vof" path="res://fonts/clacon2.ttf" id="2_mktqg"]
 [ext_resource type="Texture2D" uid="uid://vy18u0fp8xa0" path="res://assets/placeholder minigames/assets/Main Characters/Virtual Guy/Jump (32x32).png" id="3_mktqg"]
 [ext_resource type="Texture2D" uid="uid://dcyuq0o35mhhl" path="res://assets/placeholder minigames/assets/Main Characters/Virtual Guy/Idle (32x32).png" id="4_7fqiq"]
 [ext_resource type="Texture2D" uid="uid://rto22kcxn5og" path="res://assets/placeholder minigames/assets/Main Characters/Virtual Guy/Run (32x32).png" id="5_wuepr"]
 [ext_resource type="Texture2D" uid="uid://dnmqfrv2g732q" path="res://assets/placeholder minigames/assets/Terrain/Terrain (16x16).png" id="6_smlui"]
 [ext_resource type="PackedScene" uid="uid://cbnqlceg2v4t5" path="res://tscn/minigames_C1/moeda.tscn" id="7_2d3bk"]
 [ext_resource type="Script" uid="uid://cqerpodf37tg1" path="res://tscn/path_follow_2d.gd" id="9_mktqg"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_jw18c"]
+font = ExtResource("2_mktqg")
+font_size = 70
+font_color = Color(0, 0, 0, 0.7137255)
+outline_size = 5
+shadow_size = 10
+shadow_color = Color(0, 0, 0, 0.09019608)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1a3xi"]
 size = Vector2(19.3991, 21)
@@ -513,9 +521,6 @@ _data = {
 }
 point_count = 3
 
-[sub_resource type="LabelSettings" id="LabelSettings_jw18c"]
-font_color = Color(0, 0, 0, 1)
-
 [node name="Control" type="Control" unique_id=399285604]
 physics_interpolation_mode = 0
 layout_mode = 3
@@ -536,6 +541,23 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.6784314, 1, 1, 1)
+
+[node name="Label" type="Label" parent="." unique_id=531401589]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -68.5
+offset_top = 71.0
+offset_right = 68.5
+offset_bottom = 146.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+text = "Pegue 5
+carimbos"
+label_settings = SubResource("LabelSettings_jw18c")
+horizontal_alignment = 1
 
 [node name="game" type="Node2D" parent="." unique_id=216674706]
 physics_interpolation_mode = 1
