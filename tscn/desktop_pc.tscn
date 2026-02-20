@@ -89,7 +89,7 @@ layout_mode = 0
 offset_top = 728.0
 offset_right = 1024.0
 offset_bottom = 768.0
-color = Color(0.6627451, 0.6745098, 0.6901961, 1)
+color = Color(0.7490196, 0.7490196, 0.7490196, 1)
 
 [node name="btn_win" type="Button" parent="." unique_id=202719422]
 layout_mode = 0
@@ -137,4 +137,5 @@ text = "14:23"
 
 [connection signal="pressed" from="janela_redcoin/btn_x" to="janela_redcoin" method="_on_btn_x_pressed"]
 [connection signal="pressed" from="janela_redcoin/btn_minimized" to="janela_redcoin" method="_on_btn_minimized_pressed"]
+[connection signal="pressed" from="btn_win" to="." method="_on_btn_win_pressed"]
 [connection signal="pressed" from="btn_redcoin" to="janela_redcoin" method="_on_btn_redcoin_pressed"]

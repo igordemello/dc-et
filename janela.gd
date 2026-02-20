@@ -12,6 +12,9 @@ enum state {
 
 var current = state.open
 
+func _ready() -> void:
+	add_to_group("janelas_so")
+
 func _process(_delta: float) -> void:
 	if current == state.closed:
 		btn_barra.visible = false

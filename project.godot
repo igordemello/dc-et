@@ -29,6 +29,10 @@ window/windows_native_icon=""
 
 import/blender/enabled=false
 
+[global_group]
+
+janelas_so=""
+
 [input]
 
 ui_accept={
