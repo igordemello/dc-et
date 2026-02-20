@@ -22,6 +22,7 @@ config/windows_native_icon="res://logo.ico"
 window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/size/mode=3
+mouse_cursor/custom_image="uid://dlc6ref228w4h"
 window/windows_native_icon=""
 
 [input]

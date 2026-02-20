@@ -51,7 +51,7 @@ scale = Vector2(0.035, 0.035)
 texture = ExtResource("5_40rjm")
 stretch_mode = 5
 
-[node name="Button2" type="Button" parent="." unique_id=1376144712]
+[node name="hora" type="Button" parent="." unique_id=1376144712]
 layout_mode = 0
 offset_left = 944.99994
 offset_top = 730.0
