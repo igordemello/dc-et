@@ -10,9 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://cq2nrxnj5xy03" path="res://assets/placeholder models/computer/retro_crt_computer_1990s_desktop_pc.glb" id="6_qvbp8"]
 [ext_resource type="Script" uid="uid://by2jxjhv1acym" path="res://scripts/focusCam.gd" id="7_4caso"]
 [ext_resource type="Script" uid="uid://consaod6gq51a" path="res://scripts/pc_screen.gd" id="9_bc6ss"]
-[ext_resource type="Texture2D" uid="uid://beouj1skfaufg" path="res://assets/icon.svg" id="9_tmi1c"]
-[ext_resource type="PackedScene" uid="uid://bnfvwqgtpx41q" path="res://tscn/minigames_C1/minigame_pegarcarimbo.tscn" id="11_1wwud"]
-[ext_resource type="PackedScene" uid="uid://t0eup2h04il2" path="res://tscn/teste.tscn" id="11_djwg0"]
 [ext_resource type="Shader" uid="uid://12i3x3gglucb" path="res://shaders/crtPcScreen.gdshader" id="12_8dajo"]
 [ext_resource type="Script" uid="uid://418dtjjlfxwa" path="res://scripts/teste.gd" id="13_2vurp"]
 [ext_resource type="PackedScene" uid="uid://dc7w7gpx8tc6r" path="res://tscn/desktop_pc.tscn" id="13_wk85n"]
@@ -51,14 +48,27 @@ font_size = 53
 font_color = Color(1, 1, 0, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qvbp8"]
-size = Vector3(1.3161621, 0.8896942, 2.2041016)
+size = Vector3(1.3161621, 1.0924301, 2.2041016)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6lbue"]
 size = Vector3(0.3717041, 0.6062012, 0.4777832)
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_2ppwc"]
+viewport_path = NodePath("table/computer/PcScreen/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dde5d"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_2ppwc")
+emission_enabled = true
+emission_texture = SubResource("ViewportTexture_2ppwc")
+
 [sub_resource type="QuadMesh" id="QuadMesh_oahfx"]
 resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_dde5d")
 size = Vector2(0.4, 0.3)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_wk85n"]
+data = PackedVector3Array(0.19999999, -0.14999999, 0, -0.19999999, -0.14999999, 0, 0.19999999, 0.14999999, 0, -0.19999999, -0.14999999, 0, -0.19999999, 0.14999999, 0, 0.19999999, 0.14999999, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2vurp"]
 shader = ExtResource("12_8dajo")
@@ -69,107 +79,23 @@ shader_parameter/grille_opacity = 0.2650000125875
 shader_parameter/resolution = Vector2(640, 480)
 shader_parameter/pixelate = false
 shader_parameter/roll = true
-shader_parameter/roll_speed = 3.97
-shader_parameter/roll_size = 9.9750004738125
-shader_parameter/roll_variation = 1.48000006704012
+shader_parameter/roll_speed = 0.0
+shader_parameter/roll_size = 0.0
+shader_parameter/roll_variation = 0.10000000149012
 shader_parameter/distort_intensity = 0.02400000114
 shader_parameter/noise_opacity = 0.254000012065
 shader_parameter/noise_speed = 5.0
 shader_parameter/static_noise_intensity = 0.226000010735
 shader_parameter/aberration = 0.01500004821249989
-shader_parameter/brightness = 0.725
-shader_parameter/discolor = true
+shader_parameter/brightness = 1.0
+shader_parameter/discolor = false
 shader_parameter/warp_amount = 0.0
 shader_parameter/clip_warp = false
-shader_parameter/vignette_intensity = 0.165
+shader_parameter/vignette_intensity = 1.495
 shader_parameter/vignette_opacity = 0.2000000095
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rng22"]
-resource_local_to_scene = true
-resource_name = "Material"
-cull_mode = 2
-roughness = 0.5
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_wk85n"]
-viewport_path = NodePath("table/computer/PcScreen/SubViewport")
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_8dajo"]
-viewport_path = NodePath("table/computer/PcScreen/SubViewport")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5cmqf"]
-resource_local_to_scene = true
-resource_name = "Material.001"
-cull_mode = 2
-albedo_color = Color(0.9751341, 0.9751341, 0.9751341, 1)
-albedo_texture = SubResource("ViewportTexture_wk85n")
-roughness = 0.5
-emission_enabled = true
-emission_energy_multiplier = 0.5
-emission_texture = SubResource("ViewportTexture_8dajo")
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_xm7vt"]
-resource_local_to_scene = true
-_surfaces = [{
-"aabb": AABB(-1.7712893, -1.2251825, -0.2081862, 3.5425787, 2.450365, 0.2503037),
-"format": 34896613377,
-"index_count": 102,
-"index_data": PackedByteArray("DwABAAIADwAAAAEAEAAPAAIAEAACAAMABwABAAAABwAIAAEACwAIAAcAEQAHAAAACwAHABEAEQAAAA8ADQALABEAEgARAA8ADQARABIAEgAPABAADgANABIADgASABMAEwASABAADAAOABMAFAAQAAMAEwAQABQAFAADAAQADAATABUAFQATABQACgAMABUAFgAUAAQAFQAUABYAFgAEAAYACgAVAAkACQAVABYACgAJABcACQAWABcAFwAWAAYACgAXAAUAFwAGAAUA"),
-"lods": [3.2602255, PackedByteArray("AAABAAIAAAACAAMAAAADAAQABQAAAAQABQAEAAYABwABAAAABwAIAAEACQAAAAUACQAHAAAACgAJAAUACwAIAAcACgAMAAkADQALAAcADAAOAAkADgANAAcADgAHAAkA")],
-"name": "Material",
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 24,
-"vertex_data": PackedByteArray("uv7//wAAAAD/////vWEAABHN//8mywAAu5n///7/AABDZv////8AAAAA//+9YQAA7TL//ybLAAC6/gAAAAAAAP//AAC9YQAARAEAAAAAAAAAAAAAvWEAABHNAAAmywAA7TIAACbLAAC7mQAA/v8AAENmAAD//wAATcz//11oAAB6mf//r5wAAE3MAABdaAAAepkAAK+cAACEZgAAr5wAAIRm//+vnAAAsTMAAF1oAACxM///XWgAAEQB//8AAAAA")
-}, {
-"aabb": AABB(-1.7712893, -1.2251825, -0.112617604, 3.5425787, 2.450365, 0.15473509),
-"format": 34896613377,
-"index_count": 30,
-"index_data": PackedByteArray("AAABAAIAAAADAAEABAAAAAIABAACAAUABgAEAAUABgAFAAcACAAGAAcACAAHAAkACgAIAAkACgAJAAsA"),
-"name": "Material.001",
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 12,
-"vertex_data": PackedByteArray("7TIAAIOqAAAAAP//AAAAAO0y//+DqgAAAAAAAAAAAABDZgAA//8AAENm/////wAAu5kAAP7/AAC7mf///v8AABHNAACDqgAAEc3//4OqAAD//wAAAAAAAP////8AAAAA")
-}]
-blend_shape_mode = 0
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_dojnh"]
-resource_local_to_scene = true
-resource_name = "monitor_Cube"
-_surfaces = [{
-"aabb": AABB(-1.7712893, -1.2251825, -0.2081862, 3.5425787, 2.450365, 0.2503037),
-"attribute_data": PackedByteArray("/5//P//f/z//38xM/9+ZWf/fZWb/n/+//98yc/9f/3//X/+//1//P/+fAAD/XwAA/x9lZv8fMnP/H/9//x+ZWf8fzEz/H/8//5/MTP+fmVn/X8xM/1+ZWf+fZWb/X2Vm/18yc/+fMnP/n/9//9//fw=="),
-"format": 34896613399,
-"index_count": 102,
-"index_data": PackedByteArray("EgABAAIAEgAAAAEAEwASAAIAEwACAAMAFAAAABIAFQASABMAFQAUABIAFgATAAMADwAUABUADAAPABUADwAQABQADAAVABcAFwAVABMAFwATABYADQAMABcAFgADAAQADQAXABgAGAAXABYADgANABgADgAYAAcAGAAWABkAGQAWAAQABwAYABkAGQAEAAYABwAZABoAGgAZAAYAGgAGABsACAAHABoACAAaAAUACQAKAAAACQALAAoAFAAJAAAAEAAJABQAEAARAAkA"),
-"lods": [3.2602255, PackedByteArray("AAABAAIAAAACAAMAAAADAAQABQAAAAQABQAEAAYABwAAAAUACAAHAAUABwAJAAAACQAKAAAACQALAAoADAAJAAcADQAMAAcADgANAAcADAAPAAkADwAQAAkAEAARAAkA")],
-"material": SubResource("StandardMaterial3D_rng22"),
-"name": "Material",
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 28,
-"vertex_data": PackedByteArray("uv7//wAAZ/r/////vWFE4hHN//8my1jEu5n///7/TsVDZv////9axgAA//+9YSLB7TL//ybLXcdEAQAAAABn+gAAAAC9YR/Vuv4AAAAAA97/////vWEf1f//AAC9YSLBQ2YAAP//a8XtMgAAJst1xAAAAAC9YUTiu5kAAP7/WsYRzQAAJstdx///AAC9YeG2Tcz//11oWuZ6mf//r5xX6E3MAABdaGPsepkAAK+cWeqEZv//r5xZ6oRmAACvnFPosTMAAF1oV+axM///XWhj7EQB//8AAAPeAAD//71h4bYJtE2tWqwDjfygNJkknpGbWJvmnXryAseqmCug9UuxUnjPfPRxRwg/hjCCC4QN/DjsYWdkFV/DZqRT+3KmZBhiVGfTX2htpEBTt9e0rLXbtIZNE0vsSx9LErTftEVKLEueSDBLeLLrtI249sCWklq/")
-}, {
-"aabb": AABB(-1.7712893, -1.2251825, -0.112617604, 3.5425787, 2.450365, 0.15473509),
-"attribute_data": PackedByteArray("iebFf////v+J5v7//v/Ff9/MxX/fzP7/I7PFfyOz/v96mcV/epn//wSAxX8EgP//"),
-"format": 34896613399,
-"index_count": 30,
-"index_data": PackedByteArray("AAABAAIAAAADAAEABAAAAAIABAACAAUABgAEAAUABgAFAAcACAAGAAcACAAHAAkACgAIAAkACgAJAAsA"),
-"material": SubResource("StandardMaterial3D_5cmqf"),
-"name": "Material.001",
-"primitive": 3,
-"uv_scale": Vector4(2.0002835, 1.9957488, 0, 0),
-"vertex_count": 12,
-"vertex_data": PackedByteArray("7TIAAIOqUv4AAP//AABy+O0y//+DqlL+AAAAAAAAcvhDZgAA//9w/0Nm/////3D/u5kAAP7/cP+7mf///v9w/xHNAACDqlL+Ec3//4OqUv7//wAAAABy+P////8AAHL4OntMXLhjZJ5L3MUEmeG4411+g1uC26EBfCRd/qGBe6SzIzn7xISyo0acmmFlHkYc")
-}]
-blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_xm7vt")
-
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_8dajo"]
-data = PackedVector3Array(1.0559, 1.2251999, -0.1061, 1.7713, 1.2251999, -0.1126, 1.0665, 1.2251999, -0.0095999995, 1.0559, 1.2251999, -0.1061, 1.7536999, 1.2251999, -0.2082, 1.7713, 1.2251999, -0.1126, 0.35259998, 1.2251999, -0.055, 1.0559, 1.2251999, -0.1061, 1.0665, 1.2251999, -0.0095999995, 0.35259998, 1.2251999, -0.055, 1.0665, 1.2251999, -0.0095999995, 0.3561, 1.2251999, 0.042099997, 1.0559, -1.2251999, -0.1061, 1.7536999, 1.2251999, -0.2082, 1.0559, 1.2251999, -0.1061, 0.35259998, -1.2251999, -0.055, 1.0559, 1.2251999, -0.1061, 0.35259998, 1.2251999, -0.055, 0.35259998, -1.2251999, -0.055, 1.0559, -1.2251999, -0.1061, 1.0559, 1.2251999, -0.1061, -0.35259998, 1.2251999, -0.055, 0.35259998, 1.2251999, -0.055, 0.3561, 1.2251999, 0.042099997, 0.3561, -1.2251999, 0.042099997, 1.0559, -1.2251999, -0.1061, 0.35259998, -1.2251999, -0.055, -0.3561, -1.2251999, 0.042099997, 0.3561, -1.2251999, 0.042099997, 0.35259998, -1.2251999, -0.055, 0.3561, -1.2251999, 0.042099997, 1.0665, -1.2251999, -0.0095999995, 1.0559, -1.2251999, -0.1061, -0.3561, -1.2251999, 0.042099997, 0.35259998, -1.2251999, -0.055, -0.35259998, -1.2251999, -0.055, -0.35259998, -1.2251999, -0.055, 0.35259998, -1.2251999, -0.055, 0.35259998, 1.2251999, -0.055, -0.35259998, -1.2251999, -0.055, 0.35259998, 1.2251999, -0.055, -0.35259998, 1.2251999, -0.055, -1.0666, -1.2251999, -0.0095999995, -0.3561, -1.2251999, 0.042099997, -0.35259998, -1.2251999, -0.055, -0.35259998, 1.2251999, -0.055, 0.3561, 1.2251999, 0.042099997, -0.3561, 1.2251999, 0.042099997, -1.0666, -1.2251999, -0.0095999995, -0.35259998, -1.2251999, -0.055, -1.056, -1.2251999, -0.1061, -1.056, -1.2251999, -0.1061, -0.35259998, -1.2251999, -0.055, -0.35259998, 1.2251999, -0.055, -1.7713, -1.2251999, -0.1126, -1.0666, -1.2251999, -0.0095999995, -1.056, -1.2251999, -0.1061, -1.7713, -1.2251999, -0.1126, -1.056, -1.2251999, -0.1061, -1.7537999, -1.2251999, -0.2082, -1.056, -1.2251999, -0.1061, -0.35259998, 1.2251999, -0.055, -1.056, 1.2251999, -0.1061, -1.056, 1.2251999, -0.1061, -0.35259998, 1.2251999, -0.055, -0.3561, 1.2251999, 0.042099997, -1.7537999, -1.2251999, -0.2082, -1.056, -1.2251999, -0.1061, -1.056, 1.2251999, -0.1061, -1.056, 1.2251999, -0.1061, -0.3561, 1.2251999, 0.042099997, -1.0666, 1.2251999, -0.0095999995, -1.7537999, -1.2251999, -0.2082, -1.056, 1.2251999, -0.1061, -1.7537999, 1.2251999, -0.2082, -1.7537999, 1.2251999, -0.2082, -1.056, 1.2251999, -0.1061, -1.0666, 1.2251999, -0.0095999995, -1.7537999, 1.2251999, -0.2082, -1.0666, 1.2251999, -0.0095999995, -1.7713, 1.2251999, -0.1126, -1.7713, -1.2251999, -0.1126, -1.7537999, -1.2251999, -0.2082, -1.7537999, 1.2251999, -0.2082, -1.7713, -1.2251999, -0.1126, -1.7537999, 1.2251999, -0.2082, -1.7713, 1.2251999, -0.1126, 1.7536999, -1.2251999, -0.2082, 1.7713, 1.2251999, -0.1126, 1.7536999, 1.2251999, -0.2082, 1.7536999, -1.2251999, -0.2082, 1.7713, -1.2251999, -0.1126, 1.7713, 1.2251999, -0.1126, 1.0559, -1.2251999, -0.1061, 1.7536999, -1.2251999, -0.2082, 1.7536999, 1.2251999, -0.2082, 1.0665, -1.2251999, -0.0095999995, 1.7536999, -1.2251999, -0.2082, 1.0559, -1.2251999, -0.1061, 1.0665, -1.2251999, -0.0095999995, 1.7713, -1.2251999, -0.1126, 1.7536999, -1.2251999, -0.2082, -1.0666, -1.2251999, -0.0095999995, -1.7713, 1.2251999, -0.1126, -1.0666, 1.2251999, -0.0095999995, -1.0666, -1.2251999, -0.0095999995, -1.7713, -1.2251999, -0.1126, -1.7713, 1.2251999, -0.1126, -0.3561, -1.2251999, 0.042099997, -1.0666, -1.2251999, -0.0095999995, -1.0666, 1.2251999, -0.0095999995, -0.3561, -1.2251999, 0.042099997, -1.0666, 1.2251999, -0.0095999995, -0.3561, 1.2251999, 0.042099997, 0.3561, -1.2251999, 0.042099997, -0.3561, -1.2251999, 0.042099997, -0.3561, 1.2251999, 0.042099997, 0.3561, -1.2251999, 0.042099997, -0.3561, 1.2251999, 0.042099997, 0.3561, 1.2251999, 0.042099997, 1.0665, -1.2251999, -0.0095999995, 0.3561, -1.2251999, 0.042099997, 0.3561, 1.2251999, 0.042099997, 1.0665, -1.2251999, -0.0095999995, 0.3561, 1.2251999, 0.042099997, 1.0665, 1.2251999, -0.0095999995, 1.7713, -1.2251999, -0.1126, 1.0665, -1.2251999, -0.0095999995, 1.0665, 1.2251999, -0.0095999995, 1.7713, -1.2251999, -0.1126, 1.0665, 1.2251999, -0.0095999995, 1.7713, 1.2251999, -0.1126)
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_oahfx"]
-size = Vector3(0.6008301, 1.2059326, 0.52160645)
+size = Vector3(0.6008301, 1.5598755, 0.52160645)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yroga"]
 
@@ -398,7 +324,7 @@ transform = Transform3D(0.91, 0, 0, 0, 0.91, 0, 0, 0, 0.91, -2.475665, 0, 0)
 transform = Transform3D(14.375, 0, 0, 0, 14.375, 0, 0, 0, 14.375, 0.1258502, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="table" unique_id=80896648]
-transform = Transform3D(0.99999964, 0, 0, 0, 0.99999964, 0, 0, 0, 0.99999964, 0.14202213, 0.44918057, 0)
+transform = Transform3D(0.99999964, 0, 0, 0, 0.99999964, 0, 0, 0, 0.99999964, 0.14202213, 0.55054843, 0)
 shape = SubResource("BoxShape3D_qvbp8")
 
 [node name="computer" type="StaticBody3D" parent="table" unique_id=1628550562]
@@ -423,92 +349,30 @@ script = ExtResource("9_bc6ss")
 
 [node name="Quad" type="MeshInstance3D" parent="table/computer/PcScreen" unique_id=570947174]
 transform = Transform3D(-4.371138e-08, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, -4.371138e-08, 0.09078574, 0, 0)
-visible = false
 mesh = SubResource("QuadMesh_oahfx")
 
+[node name="Area3D" type="Area3D" parent="table/computer/PcScreen/Quad" unique_id=518856244]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="table/computer/PcScreen/Quad/Area3D" unique_id=1903264639]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("ConcavePolygonShape3D_wk85n")
+
 [node name="SubViewport" type="SubViewport" parent="table/computer/PcScreen" unique_id=473628276]
+gui_embed_subwindows = true
 size = Vector2i(1024, 768)
 
-[node name="Father" type="Control" parent="table/computer/PcScreen/SubViewport" unique_id=393644706]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="desktop" parent="table/computer/PcScreen/SubViewport" unique_id=1201410153 node_paths=PackedStringArray("sub_viewport") instance=ExtResource("13_wk85n")]
+sub_viewport = NodePath("..")
 
-[node name="teste_tabContainer" type="TabContainer" parent="table/computer/PcScreen/SubViewport/Father" unique_id=291281205]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-current_tab = 0
-
-[node name="TextureRect" type="TextureRect" parent="table/computer/PcScreen/SubViewport/Father/teste_tabContainer" unique_id=1443355873]
-layout_mode = 2
-texture = ExtResource("9_tmi1c")
-metadata/_tab_index = 0
-
-[node name="TextureRect2" type="TextureRect" parent="table/computer/PcScreen/SubViewport/Father/teste_tabContainer" unique_id=1146003006]
-visible = false
-modulate = Color(0, 1, 0.2509804, 1)
-layout_mode = 2
-texture = ExtResource("9_tmi1c")
-metadata/_tab_index = 1
-
-[node name="TextureRect3" type="TextureRect" parent="table/computer/PcScreen/SubViewport/Father/teste_tabContainer" unique_id=950709070]
-visible = false
-modulate = Color(1, 0, 0, 1)
-layout_mode = 2
-texture = ExtResource("9_tmi1c")
-metadata/_tab_index = 2
-
-[node name="LineEdit" type="LineEdit" parent="table/computer/PcScreen/SubViewport/Father/teste_tabContainer" unique_id=660154648]
-visible = false
-layout_mode = 2
-theme_override_font_sizes/font_size = 42
-placeholder_text = "asdasdasd"
-metadata/_tab_index = 3
-
-[node name="teste_Click" parent="table/computer/PcScreen/SubViewport/Father" unique_id=399285604 instance=ExtResource("11_djwg0")]
-visible = false
-layout_mode = 1
-offset_right = 478.20795
-offset_bottom = 221.95197
-
-[node name="Control2" parent="table/computer/PcScreen/SubViewport/Father" unique_id=956081013 node_paths=PackedStringArray("player") instance=ExtResource("11_1wwud")]
-layout_mode = 1
-offset_right = 478.20795
-offset_bottom = 221.95197
-player = NodePath("../../../../../../CharacterBody3D")
-
-[node name="desktop" parent="table/computer/PcScreen/SubViewport/Father" unique_id=1201410153 instance=ExtResource("13_wk85n")]
-visible = false
-layout_mode = 1
-
-[node name="texture" type="ColorRect" parent="table/computer/PcScreen/SubViewport/Father" unique_id=920918529]
+[node name="texture" type="ColorRect" parent="table/computer/PcScreen/SubViewport" unique_id=920918529]
 z_index = 1
 material = SubResource("ShaderMaterial_2vurp")
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-
-[node name="Screen" type="MeshInstance3D" parent="table/computer/PcScreen" unique_id=1090437910]
-transform = Transform3D(-4.939385e-09, 0, 0.11299997, 9.878772e-09, -0.113, 4.3181478e-16, 0.11299997, 9.8787725e-09, 4.939385e-09, 0.08872199, 0.010996342, 0.0003925562)
-mesh = SubResource("ArrayMesh_dojnh")
-
-[node name="Area3D" type="Area3D" parent="table/computer/PcScreen/Screen" unique_id=1229609477]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="table/computer/PcScreen/Screen/Area3D" unique_id=1185651855]
-transform = Transform3D(0.99999994, 1.4210855e-14, 0, 7.1054274e-15, 0.99999994, -1.7763568e-15, 0, 0, 0.99999994, 0, 0, 0)
-shape = SubResource("ConcavePolygonShape3D_8dajo")
 
 [node name="chair" type="StaticBody3D" parent="." unique_id=1643164589]
 transform = Transform3D(0.91, 0, 0, 0, 0.91, 0, 0, 0, 0.91, -1.4806328, 0, 0.23941785)
@@ -522,7 +386,7 @@ transform = Transform3D(-4.371138e-08, 0, -0.99999976, 0, 0.99999976, 0, 0.99999
 transform = Transform3D(0.99999964, 0, 0, 0, 0.99999964, 0, 0, 0, 0.99999964, 0.2450335, 1.0305028, -0.21492617)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="chair" unique_id=1412441781]
-transform = Transform3D(0.99999964, 0, 0, 0, 0.99999964, 0, 0, 0, 0.99999964, 0.15246546, 0.503845, -0.23919633)
+transform = Transform3D(0.99999964, 0, 0, 0, 0.99999964, 0, 0, 0, 0.99999964, 0.15246546, 0.68081635, -0.2391963)
 shape = SubResource("BoxShape3D_oahfx")
 
 [node name="ExitPosition" type="Marker3D" parent="chair" unique_id=603775304]

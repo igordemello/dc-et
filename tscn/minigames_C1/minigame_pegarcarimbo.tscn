@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://4wdhucx751f" path="res://scripts/minigames/minigame_pegarcarimbo/minigame_pegarcarimbo.gd" id="1_k8tac"]
 [ext_resource type="Script" uid="uid://cv5teqlag76xq" path="res://scripts/minigames/minigame_pegarcarimbo/Personagem.gd" id="2_01q2h"]
 [ext_resource type="FontFile" uid="uid://bvtt8fpbg4vof" path="res://fonts/clacon2.ttf" id="2_mktqg"]
+[ext_resource type="PackedScene" uid="uid://bxpka7lpw380f" path="res://tscn/minigames_C1/enemy.tscn" id="3_7fqiq"]
 [ext_resource type="Texture2D" uid="uid://vy18u0fp8xa0" path="res://assets/placeholder minigames/assets/Main Characters/Virtual Guy/Jump (32x32).png" id="3_mktqg"]
 [ext_resource type="Texture2D" uid="uid://dcyuq0o35mhhl" path="res://assets/placeholder minigames/assets/Main Characters/Virtual Guy/Idle (32x32).png" id="4_7fqiq"]
 [ext_resource type="Texture2D" uid="uid://rto22kcxn5og" path="res://assets/placeholder minigames/assets/Main Characters/Virtual Guy/Run (32x32).png" id="5_wuepr"]
@@ -509,12 +510,6 @@ physics_layer_0/collision_layer = 7
 physics_layer_0/collision_mask = 7
 sources/0 = SubResource("TileSetAtlasSource_3mtfe")
 
-[sub_resource type="LabelSettings" id="LabelSettings_gx1ov"]
-font_size = 42
-
-[sub_resource type="LabelSettings" id="LabelSettings_wwegr"]
-font_size = 42
-
 [sub_resource type="Curve2D" id="Curve2D_t07ea"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 579, 674, 0, 0, 0, 0, 847, 674, 0, 0, 0, 0, 579, 674)
@@ -548,10 +543,10 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -68.5
-offset_top = 71.0
-offset_right = 68.5
-offset_bottom = 146.0
+offset_left = -140.0
+offset_top = 25.0
+offset_right = 140.0
+offset_bottom = 144.0
 grow_horizontal = 2
 size_flags_horizontal = 4
 text = "Pegue 5
@@ -562,9 +557,8 @@ horizontal_alignment = 1
 [node name="game" type="Node2D" parent="." unique_id=216674706]
 physics_interpolation_mode = 1
 
-[node name="enemy" parent="game" unique_id=107758593 node_paths=PackedStringArray("personagem") groups=["inimigos"] instance=ExtResource("2_mktqg")]
-position = Vector2(101, 483)
-personagem = NodePath("../personagem")
+[node name="enemy2" parent="game" unique_id=1577629826 instance=ExtResource("3_7fqiq")]
+position = Vector2(83, 484)
 
 [node name="personagem" type="CharacterBody2D" parent="game" unique_id=244666864]
 position = Vector2(460, 674)
@@ -615,30 +609,6 @@ player = NodePath("../../personagem")
 position = Vector2(235, 181)
 player = NodePath("../../personagem")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="game" unique_id=1792813735]
-visible = false
-
-[node name="pontuação" type="Label" parent="game/CanvasLayer" unique_id=1417471974]
-offset_left = -2.0
-offset_top = -3.0
-offset_right = 150.0
-offset_bottom = 55.0
-size_flags_horizontal = 0
-size_flags_vertical = 0
-text = "Pontos:"
-label_settings = SubResource("LabelSettings_gx1ov")
-metadata/_edit_use_anchors_ = true
-
-[node name="Label" type="Label" parent="game/CanvasLayer" unique_id=1393699508]
-offset_top = 54.0
-offset_right = 40.0
-offset_bottom = 77.0
-text = "Vida:"
-label_settings = SubResource("LabelSettings_wwegr")
-metadata/_edit_use_anchors_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="game/CanvasLayer" unique_id=918717111]
-
 [node name="Path2D" type="Path2D" parent="game" unique_id=105482149]
 curve = SubResource("Curve2D_t07ea")
 
@@ -649,28 +619,6 @@ progress = 6.0
 rotates = false
 script = ExtResource("9_mktqg")
 
-[node name="enemy2" parent="game/Path2D/PathFollow2D" unique_id=282585483 node_paths=PackedStringArray("personagem") groups=["inimigos"] instance=ExtResource("2_mktqg")]
-position = Vector2(-0.14083467, 1.0003312)
+[node name="enemy2" parent="game/Path2D/PathFollow2D" unique_id=1541320985 instance=ExtResource("3_7fqiq")]
+position = Vector2(-6.9148655, 1.0148795)
 rotation = -0.00215517
-personagem = NodePath("../../../personagem")
-
-[node name="Label" type="Label" parent="game" unique_id=531401589]
-texture_filter = 1
-offset_left = 294.0
-offset_top = 598.0
-offset_right = 517.0
-offset_bottom = 647.0
-text = "Pegue 5 carimbos"
-label_settings = SubResource("LabelSettings_jw18c")
-metadata/_edit_use_anchors_ = true
-
-[node name="Background" type="TextureRect" parent="game" unique_id=1364034857]
-texture_filter = 1
-offset_left = -1065.0
-offset_top = -2445.0
-offset_right = 2354.0
-offset_bottom = 1258.0
-stretch_mode = 1
-metadata/_edit_use_anchors_ = true
-
-[connection signal="resetar" from="game/enemy" to="." method="_on_enemy_resetar"]

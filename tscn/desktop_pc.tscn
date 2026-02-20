@@ -1,8 +1,11 @@
 [gd_scene format=3 uid="uid://dc7w7gpx8tc6r"]
 
 [ext_resource type="Texture2D" uid="uid://28pds6bbcqdk" path="res://assets/SO PC/wallpaper.png" id="1_bjmsp"]
+[ext_resource type="Script" uid="uid://ds4wog02le7st" path="res://scripts/desktop_pc.gd" id="1_garty"]
+[ext_resource type="Theme" uid="uid://bi54ign8ggomc" path="res://Themes/Classic95/Classic95.tres" id="1_yje6c"]
+[ext_resource type="Texture2D" uid="uid://ck11wgpw23v2o" path="res://assets/SO PC/logo menor.png" id="4_yje6c"]
 
-[node name="Control" type="Control" unique_id=1201410153]
+[node name="desktop_pc" type="Control" unique_id=1201410153]
 layout_mode = 3
 anchor_right = 0.53300005
 anchor_bottom = 0.711
@@ -10,9 +13,49 @@ offset_right = 0.6398926
 offset_bottom = 0.11999512
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_yje6c")
+script = ExtResource("1_garty")
 
 [node name="wallpaper" type="TextureRect" parent="." unique_id=1224433748]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("1_bjmsp")
+
+[node name="barra" type="ColorRect" parent="." unique_id=1387681615]
+layout_mode = 0
+offset_top = 708.0
+offset_right = 1024.0
+offset_bottom = 768.0
+color = Color(0.6627451, 0.6745098, 0.6901961, 1)
+
+[node name="Button" type="Button" parent="." unique_id=202719422]
+layout_mode = 0
+offset_left = 2.9999998
+offset_top = 710.0
+offset_right = 80.0
+offset_bottom = 787.0
+scale = Vector2(0.735, 0.735)
+icon = ExtResource("4_yje6c")
+
+[node name="TabContainer" type="TabContainer" parent="." unique_id=1799709707]
+layout_mode = 0
+offset_right = 1024.0
+offset_bottom = 708.0
+current_tab = 2
+
+[node name="ColorRect" type="ColorRect" parent="TabContainer" unique_id=2040232799]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="ColorRect2" type="ColorRect" parent="TabContainer" unique_id=293194921]
+visible = false
+layout_mode = 2
+color = Color(0.16565639, 0.16565642, 0.16565639, 1)
+metadata/_tab_index = 1
+
+[node name="ColorRect3" type="ColorRect" parent="TabContainer" unique_id=305369880]
+layout_mode = 2
+color = Color(0.99999994, 0.27543655, 0.63924086, 1)
+metadata/_tab_index = 2
