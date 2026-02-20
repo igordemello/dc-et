@@ -25,6 +25,10 @@ window/size/mode=3
 mouse_cursor/custom_image="uid://dlc6ref228w4h"
 window/windows_native_icon=""
 
+[filesystem]
+
+import/blender/enabled=false
+
 [input]
 
 mov_left={
