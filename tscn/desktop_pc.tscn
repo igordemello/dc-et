@@ -31,7 +31,6 @@ offset_bottom = 40.0
 texture = ExtResource("1_bjmsp")
 
 [node name="janela_redcoin" type="Control" parent="." unique_id=868381633 node_paths=PackedStringArray("btn_barra")]
-visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -114,7 +113,6 @@ texture = ExtResource("5_40rjm")
 stretch_mode = 5
 
 [node name="btn_redcoin" type="Button" parent="." unique_id=1056179252]
-visible = false
 layout_mode = 0
 offset_left = 133.0
 offset_top = 730.0
