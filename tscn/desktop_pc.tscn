@@ -4,7 +4,14 @@
 [ext_resource type="Script" uid="uid://ds4wog02le7st" path="res://scripts/desktop_pc.gd" id="1_garty"]
 [ext_resource type="Theme" uid="uid://sx8r7eylidoh" path="res://Themes/Classic311/Classic311.tres" id="1_yje6c"]
 [ext_resource type="FontFile" uid="uid://bvtt8fpbg4vof" path="res://fonts/clacon2.ttf" id="4_6ke2r"]
+[ext_resource type="Script" uid="uid://sfq6xwh2ak5y" path="res://janela.gd" id="4_acqu7"]
 [ext_resource type="Texture2D" uid="uid://d3abl7yl2oriw" path="res://assets/SO PC/Windows_93_logo.svg.png" id="5_40rjm"]
+[ext_resource type="PackedScene" uid="uid://bnfvwqgtpx41q" path="res://tscn/minigames_C1/red_coin.tscn" id="6_40rjm"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6ke2r"]
+font = ExtResource("4_6ke2r")
+font_size = 20
+font_color = Color(0, 0, 0, 1)
 
 [node name="desktop_pc" type="Control" unique_id=1201410153]
 layout_mode = 3
@@ -23,6 +30,60 @@ offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("1_bjmsp")
 
+[node name="janela_redcoin" type="Control" parent="." unique_id=868381633 node_paths=PackedStringArray("btn_barra")]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("4_acqu7")
+btn_barra = NodePath("../btn_redcoin")
+
+[node name="PanelContainer" type="PanelContainer" parent="janela_redcoin" unique_id=1053743350]
+layout_mode = 0
+offset_right = 1024.0
+offset_bottom = 728.0
+
+[node name="MarginContainer" type="MarginContainer" parent="janela_redcoin/PanelContainer" unique_id=550133856]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 0
+
+[node name="red_coin" parent="janela_redcoin/PanelContainer/MarginContainer" unique_id=399285604 instance=ExtResource("6_40rjm")]
+layout_mode = 2
+size_flags_horizontal = 1
+
+[node name="Label" type="Label" parent="janela_redcoin" unique_id=1514829469]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 8.0
+offset_right = 151.0
+offset_bottom = 25.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "SCS™ - RedCoin"
+label_settings = SubResource("LabelSettings_6ke2r")
+
+[node name="btn_x" type="Button" parent="janela_redcoin" unique_id=233517300]
+layout_mode = 0
+offset_left = 987.0
+offset_top = 5.0
+offset_right = 1018.0
+offset_bottom = 31.249996
+scale = Vector2(0.8, 0.8)
+theme_override_fonts/font = ExtResource("4_6ke2r")
+text = "X"
+
+[node name="btn_minimized" type="Button" parent="janela_redcoin" unique_id=568114490]
+layout_mode = 0
+offset_left = 955.0
+offset_top = 5.0
+offset_right = 986.0
+offset_bottom = 31.249996
+scale = Vector2(0.8, 0.8)
+theme_override_fonts/font = ExtResource("4_6ke2r")
+text = "-"
+
 [node name="barra" type="ColorRect" parent="." unique_id=1387681615]
 layout_mode = 0
 offset_top = 728.0
@@ -30,7 +91,7 @@ offset_right = 1024.0
 offset_bottom = 768.0
 color = Color(0.6627451, 0.6745098, 0.6901961, 1)
 
-[node name="Button" type="Button" parent="." unique_id=202719422]
+[node name="btn_win" type="Button" parent="." unique_id=202719422]
 layout_mode = 0
 offset_left = 6.0
 offset_top = 730.0
@@ -41,7 +102,7 @@ theme_override_fonts/font = ExtResource("4_6ke2r")
 theme_override_font_sizes/font_size = 30
 text = "    Start "
 
-[node name="TextureRect" type="TextureRect" parent="Button" unique_id=612384690]
+[node name="TextureRect" type="TextureRect" parent="btn_win" unique_id=612384690]
 layout_mode = 0
 offset_left = 6.8027215
 offset_top = 5.442177
@@ -50,6 +111,17 @@ offset_bottom = 1052.4421
 scale = Vector2(0.035, 0.035)
 texture = ExtResource("5_40rjm")
 stretch_mode = 5
+
+[node name="btn_redcoin" type="Button" parent="." unique_id=1056179252]
+layout_mode = 0
+offset_left = 133.0
+offset_top = 730.0
+offset_right = 351.0
+offset_bottom = 778.4286
+scale = Vector2(0.735, 0.735)
+theme_override_fonts/font = ExtResource("4_6ke2r")
+theme_override_font_sizes/font_size = 30
+text = "SCS™ - RedCoin"
 
 [node name="hora" type="Button" parent="." unique_id=1376144712]
 layout_mode = 0
@@ -62,3 +134,7 @@ theme_override_fonts/font = ExtResource("4_6ke2r")
 theme_override_font_sizes/font_size = 30
 button_mask = 0
 text = "14:23"
+
+[connection signal="pressed" from="janela_redcoin/btn_x" to="janela_redcoin" method="_on_btn_x_pressed"]
+[connection signal="pressed" from="janela_redcoin/btn_minimized" to="janela_redcoin" method="_on_btn_minimized_pressed"]
+[connection signal="pressed" from="btn_redcoin" to="janela_redcoin" method="_on_btn_redcoin_pressed"]
