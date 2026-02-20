@@ -17,7 +17,7 @@ func _physics_process(delta: float) -> void:
 
 	if not is_on_floor():
 		if pulo_duplo == true:
-			if Input.is_action_just_pressed("ui_accept"):
+			if Input.is_action_just_pressed("jump"):
 				velocity.y = JUMP_VELOCITY
 				pulo_duplo = false
 			
@@ -26,14 +26,14 @@ func _physics_process(delta: float) -> void:
 		if velocity.y > 0:
 			$AnimatedSprite2D.play("fall")
 		
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 		#if pode_pulo_duplo:
 		pulo_duplo = true
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction := Input.get_axis("ui_left", "ui_right")
+	var direction := Input.get_axis("mov_left", "mov_right")
 	if direction:
 		velocity.x = direction * SPEED
 		$AnimatedSprite2D.flip_h = direction < 0
