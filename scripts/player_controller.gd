@@ -168,7 +168,7 @@ func smooth_focus_transition(target_camera: Camera3D):
 	
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
 
 func smooth_exit_focus():
 	if current_state != PlayerState.FOCUSING:

@@ -2,7 +2,10 @@
 
 [ext_resource type="Script" uid="uid://chpttc2bbri0j" path="res://scripts/escritorio.gd" id="1_corll"]
 [ext_resource type="Script" uid="uid://d1kcoc3yj3uvb" path="res://scripts/player_controller.gd" id="1_r41qb"]
+[ext_resource type="Texture2D" uid="uid://45skvh6x1tp" path="res://assets/placeholder images/parede.jpg" id="2_1wwud"]
+[ext_resource type="Texture2D" uid="uid://crjfdxua2qmup" path="res://assets/placeholder images/teto.jpg" id="2_wk85n"]
 [ext_resource type="Script" uid="uid://dwtpwqxmclug2" path="res://scripts/camera_controller.gd" id="3_lbwrt"]
+[ext_resource type="Texture2D" uid="uid://dned7t7h3y3pa" path="res://assets/placeholder images/chao.jpg" id="3_wk85n"]
 [ext_resource type="PackedScene" uid="uid://damhehj38ye01" path="res://assets/placeholder models/table/table.glb" id="4_bjdq7"]
 [ext_resource type="PackedScene" uid="uid://6h8mrgx1osui" path="res://assets/placeholder models/chair/gaming_chair.glb" id="4_ske3q"]
 [ext_resource type="Script" uid="uid://xmkhgcsomjq1" path="res://scripts/computer.gd" id="5_oahfx"]
@@ -13,11 +16,20 @@
 [ext_resource type="Shader" uid="uid://12i3x3gglucb" path="res://shaders/crtPcScreen.gdshader" id="12_8dajo"]
 [ext_resource type="Script" uid="uid://418dtjjlfxwa" path="res://scripts/teste.gd" id="13_2vurp"]
 [ext_resource type="PackedScene" uid="uid://dc7w7gpx8tc6r" path="res://tscn/desktop_pc.tscn" id="13_wk85n"]
+[ext_resource type="PackedScene" uid="uid://bm3qqprw1dfry" path="res://assets/placeholder models/door/door_with_frame.glb" id="17_2ppwc"]
+[ext_resource type="PackedScene" uid="uid://d4dkapq37q17d" path="res://assets/placeholder models/decorations/air_conditioning.glb" id="18_dde5d"]
+[ext_resource type="PackedScene" uid="uid://7g4x3w7yarej" path="res://assets/placeholder models/decorations/classic_wallschool_clock_black_and_white..glb" id="19_1n107"]
+[ext_resource type="PackedScene" uid="uid://g3170gkxj00v" path="res://assets/placeholder models/decorations/psx_painting.glb" id="20_47rhu"]
+[ext_resource type="PackedScene" uid="uid://ctn7q241q2bbe" path="res://assets/placeholder models/decorations/rhyzome_plant.glb" id="21_ustkw"]
 
 [sub_resource type="Environment" id="Environment_r41qb"]
 background_mode = 1
 background_color = Color(0.06469653, 0.06469653, 0.06469653, 1)
 glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h84lj"]
+albedo_texture = ExtResource("2_wk85n")
+uv1_scale = Vector3(1.94, 1.94, 1.94)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_aryoi"]
 size = Vector2(6, 6)
@@ -25,20 +37,36 @@ size = Vector2(6, 6)
 [sub_resource type="BoxShape3D" id="BoxShape3D_corll"]
 size = Vector3(6, 0.1, 6)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2ppwc"]
+albedo_texture = ExtResource("2_1wwud")
+
 [sub_resource type="PlaneMesh" id="PlaneMesh_r41qb"]
 size = Vector2(6, 2.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_r41qb"]
 size = Vector3(6, 0.1, 2.5)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1n107"]
+albedo_texture = ExtResource("2_1wwud")
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_lbwrt"]
 size = Vector3(6, 0.1, 2.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_47rhu"]
+albedo_texture = ExtResource("2_1wwud")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bjdq7"]
 size = Vector3(2.5, 0.1, 6)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ustkw"]
+albedo_texture = ExtResource("2_1wwud")
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_ske3q"]
 size = Vector3(2.5, 0.1, 6)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mvasu"]
+albedo_texture = ExtResource("3_wk85n")
+uv1_triplanar_sharpness = 0.9659363
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tmi1c"]
 size = Vector3(0.45092773, 1.692749, 0.18286133)
@@ -212,6 +240,7 @@ environment = SubResource("Environment_r41qb")
 
 [node name="MeshInstance3d" type="MeshInstance3D" parent="chao" unique_id=991559811]
 transform = Transform3D(1, 0, 0, 0, -1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 2.5, 0)
+material_override = SubResource("StandardMaterial3D_h84lj")
 mesh = SubResource("PlaneMesh_aryoi")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="chao" unique_id=1103397734]
@@ -222,6 +251,7 @@ shape = SubResource("BoxShape3D_corll")
 
 [node name="MeshInstance3d" type="MeshInstance3D" parent="parede" unique_id=382079757]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 1.25, -3)
+material_override = SubResource("StandardMaterial3D_2ppwc")
 mesh = SubResource("PlaneMesh_r41qb")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="parede" unique_id=1409763006]
@@ -232,6 +262,7 @@ shape = SubResource("BoxShape3D_r41qb")
 
 [node name="MeshInstance3d" type="MeshInstance3D" parent="parede2" unique_id=531214608]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 1.25, 3)
+material_override = SubResource("StandardMaterial3D_1n107")
 mesh = SubResource("PlaneMesh_r41qb")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="parede2" unique_id=2097869562]
@@ -242,6 +273,7 @@ shape = SubResource("BoxShape3D_lbwrt")
 
 [node name="MeshInstance3d" type="MeshInstance3D" parent="parede3" unique_id=2069673842]
 transform = Transform3D(-4.371139e-08, -1, -4.371139e-08, 0, -4.371139e-08, 1, -1, 4.371139e-08, 1.9106855e-15, 3, 1.25, 0)
+material_override = SubResource("StandardMaterial3D_47rhu")
 mesh = SubResource("PlaneMesh_r41qb")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="parede3" unique_id=2104885887]
@@ -252,6 +284,7 @@ shape = SubResource("BoxShape3D_bjdq7")
 
 [node name="MeshInstance3d" type="MeshInstance3D" parent="parede4" unique_id=18539187]
 transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 1.9106855e-15, -3, 1.25, 0)
+material_override = SubResource("StandardMaterial3D_ustkw")
 mesh = SubResource("PlaneMesh_r41qb")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="parede4" unique_id=1267463022]
@@ -261,6 +294,7 @@ shape = SubResource("BoxShape3D_ske3q")
 [node name="teto" type="StaticBody3D" parent="." unique_id=1471236661]
 
 [node name="MeshInstance3d" type="MeshInstance3D" parent="teto" unique_id=1773489156]
+material_override = SubResource("StandardMaterial3D_mvasu")
 mesh = SubResource("PlaneMesh_aryoi")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="teto" unique_id=242063367]
@@ -420,3 +454,18 @@ shape = SubResource("BoxShape3D_8dajo")
 transform = Transform3D(85.64267, -114.339386, -4.9979335e-06, 0, -6.2444847e-06, 142.85715, -114.339386, -85.64267, -3.74356e-06, 2.6909332, 56.289505, 1.3433533)
 script = ExtResource("7_4caso")
 target_object = NodePath("../carimbo")
+
+[node name="Sketchfab_Scene" parent="." unique_id=262042171 instance=ExtResource("17_2ppwc")]
+transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, -0.004924774, 0, -3.0681484)
+
+[node name="Sketchfab_Scene2" parent="." unique_id=733866727 instance=ExtResource("18_dde5d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3701028, 2.0708895, -2.9009824)
+
+[node name="Sketchfab_Scene3" parent="." unique_id=631633388 instance=ExtResource("19_1n107")]
+transform = Transform3D(-4.371139e-08, 0.99999994, -4.3711385e-08, 0, -4.3711385e-08, -0.99999994, -1, -4.3711385e-08, 1.9106853e-15, -2.9943776, 2.043572, 0.021073699)
+
+[node name="Sketchfab_Scene4" parent="." unique_id=1557630493 instance=ExtResource("20_47rhu")]
+transform = Transform3D(-0.825, 0, -1.2457153e-07, 0, 0.825, 0, 1.2457153e-07, 0, -0.825, 0.01412642, 0.98425865, 2.9372358)
+
+[node name="Sketchfab_Scene5" parent="." unique_id=639728196 instance=ExtResource("21_ustkw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5307975, -2.3841858e-07, 2.150856)
