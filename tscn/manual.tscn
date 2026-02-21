@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://dvvgongfp0egu" path="res://assets/DC-ET Manual/ed567a8a-09.png" id="9_j7xud"]
 [ext_resource type="Texture2D" uid="uid://by7aj8dthtn2t" path="res://assets/DC-ET Manual/ed567a8a-10.png" id="10_fk3ek"]
 [ext_resource type="Texture2D" uid="uid://b1gsx6eidowe1" path="res://assets/DC-ET Manual/ed567a8a-11.png" id="11_o888t"]
+[ext_resource type="Texture2D" uid="uid://dwom8k8xgcd51" path="res://assets/DC-ET Manual/EM BRANCO.png" id="15_mverv"]
 
 [node name="manual" type="Control" unique_id=1542466765]
 layout_mode = 3
@@ -42,12 +43,12 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 233.99998
-offset_right = 937.9364
+offset_left = 124.999985
+offset_right = 841.0
 offset_bottom = 1575.0156
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.315, 0.315)
+scale = Vector2(0.44, 0.44)
 horizontal_scroll_mode = 0
 script = ExtResource("3_q55sw")
 
@@ -108,4 +109,9 @@ stretch_mode = 5
 [node name="TextureRect11" type="TextureRect" parent="manual_ScrollContainer/VBoxContainer" unique_id=1449393508]
 layout_mode = 2
 texture = ExtResource("11_o888t")
+stretch_mode = 5
+
+[node name="EM BRANCO" type="TextureRect" parent="manual_ScrollContainer/VBoxContainer" unique_id=1938954930]
+layout_mode = 2
+texture = ExtResource("15_mverv")
 stretch_mode = 5
