@@ -6,7 +6,6 @@
 [ext_resource type="FontFile" uid="uid://bvtt8fpbg4vof" path="res://fonts/clacon2.ttf" id="4_6ke2r"]
 [ext_resource type="Script" uid="uid://sfq6xwh2ak5y" path="res://janela.gd" id="4_acqu7"]
 [ext_resource type="Texture2D" uid="uid://d3abl7yl2oriw" path="res://assets/SO PC/Windows_93_logo.svg.png" id="5_40rjm"]
-[ext_resource type="PackedScene" uid="uid://dkw0e3cbefbwr" path="res://tscn/manual.tscn" id="5_y2v6o"]
 [ext_resource type="PackedScene" uid="uid://bnfvwqgtpx41q" path="res://tscn/minigames_C1/red_coin.tscn" id="6_40rjm"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_6ke2r"]
@@ -32,13 +31,12 @@ offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("1_bjmsp")
 
-[node name="janela_manual" type="Control" parent="." unique_id=68325108 node_paths=PackedStringArray("btn_barra") groups=["janelas_so"]]
-visible = false
+[node name="janela_manual" type="Control" parent="." unique_id=68325108 node_paths=PackedStringArray("btn_barra")]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("4_acqu7")
-btn_barra = NodePath("../task_bar/barra/task_buttons/btn_manual")
+btn_barra = NodePath("../barra/task_buttons/btn_manual")
 
 [node name="PanelContainer" type="PanelContainer" parent="janela_manual" unique_id=1254046006]
 layout_mode = 0
@@ -52,8 +50,9 @@ theme_override_constants/margin_top = 30
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 0
 
-[node name="manual" parent="janela_manual/PanelContainer/MarginContainer" unique_id=1542466765 instance=ExtResource("5_y2v6o")]
+[node name="ColorRect" type="ColorRect" parent="janela_manual/PanelContainer/MarginContainer" unique_id=574256978]
 layout_mode = 2
+color = Color(0, 0, 0, 1)
 
 [node name="Label" type="Label" parent="janela_manual" unique_id=57094858]
 layout_mode = 0
@@ -86,13 +85,12 @@ scale = Vector2(0.8, 0.8)
 theme_override_fonts/font = ExtResource("4_6ke2r")
 text = "-"
 
-[node name="janela_redcoin" type="Control" parent="." unique_id=868381633 node_paths=PackedStringArray("btn_barra") groups=["janelas_so"]]
-visible = false
+[node name="janela_redcoin" type="Control" parent="." unique_id=868381633 node_paths=PackedStringArray("btn_barra")]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("4_acqu7")
-btn_barra = NodePath("../task_bar/barra/task_buttons/btn_redcoin")
+btn_barra = NodePath("../barra/task_buttons/btn_redcoin")
 
 [node name="PanelContainer" type="PanelContainer" parent="janela_redcoin" unique_id=1053743350]
 layout_mode = 0
@@ -141,20 +139,14 @@ scale = Vector2(0.8, 0.8)
 theme_override_fonts/font = ExtResource("4_6ke2r")
 text = "-"
 
-[node name="task_bar" type="Control" parent="." unique_id=905464135]
-top_level = true
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="barra" type="ColorRect" parent="task_bar" unique_id=1387681615]
+[node name="barra" type="ColorRect" parent="." unique_id=1387681615]
 layout_mode = 0
 offset_top = 728.0
 offset_right = 1024.0
 offset_bottom = 768.0
 color = Color(0.7490196, 0.7490196, 0.7490196, 1)
 
-[node name="task_buttons" type="HBoxContainer" parent="task_bar/barra" unique_id=1112721774]
+[node name="task_buttons" type="HBoxContainer" parent="barra" unique_id=1112721774]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.159
@@ -166,19 +158,19 @@ offset_bottom = -3.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="btn_manual" type="Button" parent="task_bar/barra/task_buttons" unique_id=971794034]
+[node name="btn_manual" type="Button" parent="barra/task_buttons" unique_id=971794034]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_6ke2r")
 theme_override_font_sizes/font_size = 20
 text = "Manual"
 
-[node name="btn_redcoin" type="Button" parent="task_bar/barra/task_buttons" unique_id=1056179252]
+[node name="btn_redcoin" type="Button" parent="barra/task_buttons" unique_id=1056179252]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_6ke2r")
 theme_override_font_sizes/font_size = 20
 text = "SCS™ - RedCoin"
 
-[node name="btn_win" type="Button" parent="task_bar" unique_id=202719422]
+[node name="btn_win" type="Button" parent="." unique_id=202719422]
 layout_mode = 0
 offset_left = 6.0
 offset_top = 730.0
@@ -189,7 +181,7 @@ theme_override_fonts/font = ExtResource("4_6ke2r")
 theme_override_font_sizes/font_size = 30
 text = "    Start "
 
-[node name="TextureRect" type="TextureRect" parent="task_bar/btn_win" unique_id=612384690]
+[node name="TextureRect" type="TextureRect" parent="btn_win" unique_id=612384690]
 layout_mode = 0
 offset_left = 6.8027215
 offset_top = 5.442177
@@ -199,7 +191,7 @@ scale = Vector2(0.035, 0.035)
 texture = ExtResource("5_40rjm")
 stretch_mode = 5
 
-[node name="hora" type="Button" parent="task_bar" unique_id=1376144712]
+[node name="hora" type="Button" parent="." unique_id=1376144712]
 layout_mode = 0
 offset_left = 944.99994
 offset_top = 730.0
@@ -215,4 +207,4 @@ text = "14:23"
 [connection signal="pressed" from="janela_manual/btn_minimized" to="janela_manual" method="_on_btn_minimized_pressed"]
 [connection signal="pressed" from="janela_redcoin/btn_x" to="janela_redcoin" method="_on_btn_x_pressed"]
 [connection signal="pressed" from="janela_redcoin/btn_minimized" to="janela_redcoin" method="_on_btn_minimized_pressed"]
-[connection signal="pressed" from="task_bar/btn_win" to="." method="_on_btn_win_pressed"]
+[connection signal="pressed" from="btn_win" to="." method="_on_btn_win_pressed"]

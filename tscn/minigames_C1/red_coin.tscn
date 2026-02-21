@@ -9,7 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://rto22kcxn5og" path="res://assets/placeholder minigames/assets/Main Characters/Virtual Guy/Run (32x32).png" id="7_360h1"]
 [ext_resource type="Texture2D" uid="uid://dnmqfrv2g732q" path="res://assets/placeholder minigames/assets/Terrain/Terrain (16x16).png" id="8_262py"]
 [ext_resource type="PackedScene" uid="uid://cbnqlceg2v4t5" path="res://tscn/minigames_C1/rc_moeda.tscn" id="9_wv4c4"]
-[ext_resource type="Script" uid="uid://cqerpodf37tg1" path="res://tscn/path_follow_2d.gd" id="10_lwnwa"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_jw18c"]
 font = ExtResource("2_bjopv")
@@ -516,6 +515,28 @@ _data = {
 }
 point_count = 3
 
+[sub_resource type="GDScript" id="GDScript_jej5s"]
+script/source = "extends PathFollow2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+	
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	if $enemy2:
+		if self.progress_ratio < 0.5 :
+			$\"enemy2/AnimatedSprite2D\".flip_h = false
+			$\"enemy2/AnimatedSprite2D\".play('andar')
+		else:
+			$\"enemy2/AnimatedSprite2D\".flip_h = true
+			$\"enemy2/AnimatedSprite2D\".play('andar')
+		self.progress_ratio += delta * 0.1
+"
+
 [node name="red_coin" type="Control" unique_id=399285604]
 physics_interpolation_mode = 0
 layout_mode = 3
@@ -620,7 +641,7 @@ position = Vector2(584.91705, 674)
 rotation = 0.00215517
 progress = 6.0
 rotates = false
-script = ExtResource("10_lwnwa")
+script = SubResource("GDScript_jej5s")
 
 [node name="enemy2" parent="game/Path2D/PathFollow2D" unique_id=1541320985 instance=ExtResource("3_nmewx")]
 position = Vector2(-6.9148655, 1.0148795)

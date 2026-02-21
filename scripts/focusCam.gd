@@ -39,11 +39,11 @@ func _input(event):
 			if event.button_index == MOUSE_BUTTON_LEFT:
 				dragging = event.pressed
 				
-			if event.button_index == MOUSE_BUTTON_WHEEL_UP and event.pressed:
+			if event.button_index == MOUSE_BUTTON_WHEEL_UP and event.pressed and Input.is_action_pressed("shift"):
 				target_fov -= zoom_step
 				target_fov = clamp(target_fov, min_fov, base_fov)
 				
-			if event.button_index == MOUSE_BUTTON_WHEEL_DOWN and event.pressed:
+			if event.button_index == MOUSE_BUTTON_WHEEL_DOWN and event.pressed and Input.is_action_pressed("shift"):
 				target_fov += zoom_step
 				target_fov = clamp(target_fov, min_fov, base_fov)
 		
